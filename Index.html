@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio – Ahmad Zaky</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --blue:#2563eb;--blue-l:#60a5fa;--blue-p:#dbeafe;
+  --bg:#f0f6ff;--dark:#111827;--gray:#6b7280;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;}
+
+/* ─── BG CANVAS ─── */
+.bgc{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.bgc-dots{position:absolute;width:100%;height:100%;background-image:radial-gradient(circle,rgba(37,99,235,.11) 1.5px,transparent 1.5px);background-size:28px 28px;}
+.bgb{position:absolute;border-radius:50%;filter:blur(65px);opacity:.14;}
+.b1{width:520px;height:520px;background:#60a5fa;top:-110px;right:-110px;animation:bA 14s ease-in-out infinite;}
+.b2{width:380px;height:380px;background:#93c5fd;bottom:18%;left:-85px;animation:bA 18s ease-in-out infinite reverse;}
+.b3{width:280px;height:280px;background:#3b82f6;top:48%;right:6%;animation:bA 11s ease-in-out infinite 2s;}
+.b4{width:200px;height:200px;background:#bfdbfe;bottom:4%;right:28%;animation:bA 16s ease-in-out infinite 1s;}
+.b5{width:160px;height:160px;background:#93c5fd;top:30%;left:5%;animation:bA 13s ease-in-out infinite 3s;}
+.b6{width:120px;height:120px;background:#60a5fa;bottom:35%;right:18%;animation:bA 9s ease-in-out infinite .5s;}
+@keyframes bA{0%,100%{transform:translate(0,0) scale(1);}25%{transform:translate(22px,-28px) scale(1.05);}50%{transform:translate(-8px,18px) scale(.97);}75%{transform:translate(14px,10px) scale(1.03);}}
+.fg{position:absolute;pointer-events:none;}
+.fg-ring{border-radius:50%;border:2px solid rgba(37,99,235,.14);animation:spin var(--d,20s) linear infinite;}
+.fg-ring.rev{animation-direction:reverse;}
+.fg-tri{width:0;height:0;border-left:var(--s,14px) solid transparent;border-right:var(--s,14px) solid transparent;border-bottom:calc(var(--s,14px)*1.7) solid rgba(37,99,235,.09);animation:fT var(--d,7s) ease-in-out infinite;}
+.fg-sq{border:2px solid rgba(37,99,235,.12);border-radius:3px;animation:spSq var(--d,10s) linear infinite;}
+.fg-star{color:var(--blue);opacity:.32;animation:fS var(--d,5s) ease-in-out infinite;}
+.fg-cross{font-weight:900;color:rgba(37,99,235,.14);animation:fC var(--d,8s) ease-in-out infinite;}
+.fg-dash{height:2px;background:rgba(37,99,235,.09);border-radius:2px;transform-origin:left;animation:dW var(--d,6s) ease-in-out infinite;}
+.fg-hex{clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);background:rgba(37,99,235,.06);animation:fT var(--d,9s) ease-in-out infinite;}
+.fg-dia{background:rgba(37,99,235,.07);transform:rotate(45deg);border-radius:3px;animation:spSq var(--d,12s) linear infinite;}
+.fg-dr{display:flex;gap:8px;animation:fS var(--d,7s) ease-in-out infinite;}
+.fg-dr span{width:4px;height:4px;border-radius:50%;background:rgba(37,99,235,.16);display:block;}
+.fg-arc{border:2px solid rgba(37,99,235,.11);border-bottom:none;border-left:none;border-radius:0 50px 0 0;animation:fC var(--d,11s) ease-in-out infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes spSq{to{transform:rotate(360deg);}}
+@keyframes fT{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-18px) rotate(15deg);}}
+@keyframes fS{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-14px) scale(1.1);}}
+@keyframes fC{0%,100%{transform:translate(0,0) rotate(0deg);}33%{transform:translate(6px,-12px) rotate(8deg);}66%{transform:translate(-5px,8px) rotate(-5deg);}}
+@keyframes dW{0%,100%{transform:rotate(var(--rot,0deg)) scaleX(1);}50%{transform:rotate(var(--rot,0deg)) scaleX(.7);}}
+
+/* ─── NAVBAR ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(255,255,255,.93);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:14px 60px;box-shadow:0 2px 20px rgba(37,99,235,.07);border-bottom:1px solid rgba(37,99,235,.07);}
+.logo{font-size:1.35rem;font-weight:800;color:var(--dark);text-decoration:none;cursor:pointer;}
+.logo span{display:inline-block;}
+.logo .logo-blue{color:var(--blue);margin-left:4px;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a,.nav-btn{text-decoration:none;color:var(--dark);font-size:.9rem;font-weight:500;transition:color .2s;background:none;border:none;cursor:pointer;font-family:inherit;padding:0;}
+.nav-links a:hover,.nav-btn:hover,.nav-links a.active,.nav-btn.active{color:var(--blue);}
+.btn-cta{background:var(--blue);color:#fff;border:none;padding:10px 22px;border-radius:50px;font-size:.88rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;transition:transform .2s,box-shadow .2s;}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.35);}
+
+/* ─── PAGES ─── */
+.page{display:none;opacity:0;}
+.page.active{display:block;opacity:1;}
+.page.anim-in,.page.anim-out{opacity:1;}
+
+/* ─── PAGE TRANSITION ANIMATIONS ─── */
+@keyframes pgSUI{from{opacity:0;transform:translateY(70px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes pgSUO{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-50px) scale(.96)}}
+@keyframes pgSDI{from{opacity:0;transform:translateY(-60px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes pgSDO{from{opacity:1;transform:none}to{opacity:0;transform:translateY(50px) scale(.96)}}
+@keyframes pgSLI{from{opacity:0;transform:translateX(80px) rotateY(-3deg)}to{opacity:1;transform:none}}
+@keyframes pgSLO{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-60px) rotateY(3deg)}}
+@keyframes pgSRI{from{opacity:0;transform:translateX(-80px) rotateY(3deg)}to{opacity:1;transform:none}}
+@keyframes pgSRO{from{opacity:1;transform:none}to{opacity:0;transform:translateX(60px) rotateY(-3deg)}}
+@keyframes pgFI{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes pgFO{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-12px)}}
+.slide-up-in{animation:pgSUI .65s cubic-bezier(.22,1,.36,1) forwards;}
+.slide-up-out{animation:pgSUO .4s cubic-bezier(.55,0,1,.45) forwards;}
+.slide-down-in{animation:pgSDI .65s cubic-bezier(.22,1,.36,1) forwards;}
+.slide-down-out{animation:pgSDO .4s cubic-bezier(.55,0,1,.45) forwards;}
+.swipe-left-in{animation:pgSLI .6s cubic-bezier(.22,1,.36,1) forwards;}
+.swipe-left-out{animation:pgSLO .38s cubic-bezier(.55,0,1,.45) forwards;}
+.swipe-right-in{animation:pgSRI .6s cubic-bezier(.22,1,.36,1) forwards;}
+.swipe-right-out{animation:pgSRO .38s cubic-bezier(.55,0,1,.45) forwards;}
+.fade-in{animation:pgFI .55s cubic-bezier(.4,0,.2,1) forwards;}
+.fade-out{animation:pgFO .35s cubic-bezier(.4,0,.2,1) forwards;}
+
+/* ─── TRANSITION OVERLAY ─── */
+#tov{position:fixed;inset:0;z-index:9998;pointer-events:none;overflow:hidden;}
+.rw{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.24) 0%,rgba(96,165,250,.14) 40%,transparent 70%);transform:scale(0);opacity:0;}
+.rw.go{animation:rwG .85s cubic-bezier(.2,1,.4,1) forwards;}
+@keyframes rwG{0%{transform:scale(0);opacity:1;}50%{transform:scale(3.5);opacity:.6;}100%{transform:scale(7);opacity:0;}}
+.rr{position:absolute;border-radius:50%;border:2.5px solid rgba(37,99,235,.42);transform:scale(0);opacity:0;}
+.rr.go{animation:rrG 1s cubic-bezier(.2,1,.4,1) forwards;}
+@keyframes rrG{0%{transform:scale(0);opacity:.9;}45%{transform:scale(3);opacity:.45;}100%{transform:scale(6.5);opacity:0;}}
+.rr2{position:absolute;border-radius:50%;border:1px solid rgba(96,165,250,.28);transform:scale(0);opacity:0;}
+.rr2.go{animation:rr2G 1.2s cubic-bezier(.2,1,.4,1) forwards;}
+@keyframes rr2G{0%{transform:scale(0);opacity:.7;}55%{transform:scale(4);opacity:.3;}100%{transform:scale(8);opacity:0;}}
+.rr3{position:absolute;border-radius:50%;border:1px dashed rgba(37,99,235,.2);transform:scale(0);opacity:0;}
+.rr3.go{animation:rr3G 1.4s cubic-bezier(.2,1,.4,1) forwards;}
+@keyframes rr3G{0%{transform:scale(0);opacity:.5;}60%{transform:scale(4.5);opacity:.2;}100%{transform:scale(9);opacity:0;}}
+.tp{position:absolute;pointer-events:none;animation:tpG var(--d,.75s) cubic-bezier(.2,1,.4,1) forwards;opacity:0;animation-delay:var(--dl,0s);}
+@keyframes tpG{0%{transform:translate(0,0) rotate(0deg) scale(.1);opacity:0;}10%{opacity:1;}55%{opacity:.7;}100%{transform:translate(var(--tx,80px),var(--ty,-80px)) rotate(var(--tr,200deg)) scale(var(--ts,.8));opacity:0;}}
+.sl{position:absolute;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(37,99,235,.75),rgba(96,165,250,.95),rgba(37,99,235,.75),transparent);transform-origin:left center;opacity:0;animation:slG var(--d,.48s) cubic-bezier(.22,1,.36,1) forwards;animation-delay:var(--dl,0s);}
+@keyframes slG{0%{opacity:0;transform:rotate(var(--ra,0deg)) scaleX(0);}16%{opacity:1;}62%{opacity:.7;}100%{opacity:0;transform:rotate(var(--ra,0deg)) scaleX(1) translateX(var(--tx,0px));}}
+.dm{position:absolute;border-radius:2px;opacity:0;animation:dmG var(--d,.68s) cubic-bezier(.34,1.56,.64,1) forwards;animation-delay:var(--dl,0s);}
+@keyframes dmG{0%{transform:rotate(45deg) scale(0);opacity:0;}32%{opacity:1;}100%{transform:rotate(var(--dr,45deg)) scale(.5) translate(var(--tx,0px),var(--ty,0px));opacity:0;}}
+.sb{position:fixed;top:0;bottom:0;width:3px;left:0;background:linear-gradient(180deg,transparent,rgba(37,99,235,.65) 30%,rgba(96,165,250,.9) 60%,transparent);animation:sbG var(--d,.68s) cubic-bezier(.22,1,.36,1) forwards;animation-delay:var(--dl,0s);opacity:0;}
+@keyframes sbG{0%{left:0;opacity:0;}7%{opacity:1;}87%{opacity:.9;}100%{left:100%;opacity:0;}}
+.wv{position:absolute;height:3px;left:0;right:0;overflow:hidden;}
+.wv-i{height:100%;background:linear-gradient(90deg,transparent,rgba(37,99,235,.65),rgba(96,165,250,.85),rgba(37,99,235,.65),transparent);transform:scaleX(0);transform-origin:left;animation:wvG var(--d,.62s) cubic-bezier(.22,1,.36,1) forwards;animation-delay:var(--dl,0s);}
+@keyframes wvG{0%{transform:scaleX(0);opacity:1;}58%{transform:scaleX(1);opacity:.8;}100%{transform:scaleX(1.3);opacity:0;}}
+.bst{position:absolute;border-radius:50%;animation:bstG var(--d,.58s) cubic-bezier(.34,1.56,.64,1) forwards;opacity:0;animation-delay:var(--dl,0s);}
+@keyframes bstG{0%{transform:scale(0);opacity:0;}28%{opacity:.65;}100%{transform:scale(var(--bs,1));opacity:0;}}
+/* extra: shooting star */
+.shs{position:absolute;height:2px;border-radius:99px;background:linear-gradient(90deg,rgba(96,165,250,.9),transparent);animation:shsG var(--d,.55s) cubic-bezier(.22,1,.36,1) forwards;animation-delay:var(--dl,0s);opacity:0;}
+@keyframes shsG{0%{opacity:0;transform:translateX(0) rotate(var(--ra,-20deg)) scaleX(0);}15%{opacity:1;}70%{opacity:.6;}100%{opacity:0;transform:translateX(var(--tx,200px)) rotate(var(--ra,-20deg)) scaleX(1);}}
+/* extra: flash ring */
+.fls{position:absolute;border-radius:50%;border:3px solid rgba(37,99,235,.5);animation:flsG var(--d,.35s) ease-out forwards;animation-delay:var(--dl,0s);opacity:0;}
+@keyframes flsG{0%{transform:scale(.3);opacity:.9;}100%{transform:scale(1.8);opacity:0;}}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;background:linear-gradient(135deg,#e0eeff 0%,#f0f6ff 55%,#dbeafe 100%);position:relative;display:flex;align-items:center;overflow:hidden;padding-top:80px;z-index:1;}
+.hero-deco{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.hero-blob{position:absolute;right:30px;bottom:0;width:470px;height:530px;background:linear-gradient(160deg,#93c5fd 0%,#60a5fa 40%,#bfdbfe 80%);border-radius:60% 40% 50% 50% / 50% 50% 60% 40%;animation:bMrph 8s ease-in-out infinite;}
+@keyframes bMrph{0%,100%{border-radius:60% 40% 50% 50% / 50% 50% 60% 40%;}50%{border-radius:40% 60% 40% 60% / 60% 40% 60% 40%;}}
+.big-glow{position:absolute;width:580px;height:580px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.28) 0%,transparent 70%);top:-130px;right:-90px;}
+.hero-content{position:relative;z-index:2;padding:0 60px;max-width:560px;align-self:center;margin-left:4%;}
+.hero-greeting{font-size:1.1rem;font-weight:500;color:var(--dark);margin-bottom:8px;}
+.hero-name{font-size:clamp(2.8rem,5vw,3.8rem);font-weight:900;line-height:1.1;margin-bottom:8px;}
+.hero-name .hl{color:var(--blue);}
+.hero-title{font-size:1rem;color:var(--gray);margin-bottom:18px;}
+.hero-title span{color:var(--blue);font-weight:600;}
+.hero-divider{width:50px;height:3px;background:var(--blue);border-radius:2px;margin-bottom:22px;}
+.hero-desc{font-size:.88rem;color:var(--gray);line-height:1.8;}
+.hero-art{position:absolute;right:0;top:0;bottom:0;width:52%;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:1;}
+.hero-profile{position:relative;width:400px;height:400px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,#4a8dff,#79b8ff,#b6d7ff);box-shadow:0 25px 60px rgba(0,0,0,.15),inset 0 0 30px rgba(255,255,255,.2);transition:.4s ease;display:flex;justify-content:center;align-items:center;}
+.hero-profile:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 35px 80px rgba(0,0,0,.18),inset 0 0 35px rgba(255,255,255,.25);}
+.hero-profile img{width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:2;position:relative;}
+.hero-profile::before{content:"";position:absolute;inset:12px;border:4px solid rgba(255,255,255,.55);border-radius:50%;z-index:3;}
+.hero-profile::after{content:"";position:absolute;width:115%;height:115%;background:radial-gradient(circle,rgba(80,140,255,.18),transparent 70%);border-radius:50%;z-index:1;animation:pGlow 3s infinite ease-in-out;}
+@keyframes pGlow{0%{transform:scale(1);opacity:.7;}50%{transform:scale(1.08);opacity:1;}100%{transform:scale(1);opacity:.7;}}
+.hero-profile-ph{font-size:5rem;color:rgba(255,255,255,.45);}
+
+/* ─── WAVE ─── */
+.wave{position:relative;margin-top:-2px;line-height:0;}
+.wave svg{display:block;width:100%;}
+
+/* ─── ABOUT ─── */
+.about-section{background:#e8f4ff;padding:60px;position:relative;z-index:1;}
+.sbg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.sbg-blob{position:absolute;border-radius:50%;filter:blur(50px);opacity:.1;background:#60a5fa;}
+.sbg-ring{position:absolute;border-radius:50%;border:2px dashed rgba(37,99,235,.1);}
+.sbg-tri{position:absolute;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-bottom:24px solid rgba(37,99,235,.08);}
+.sbg-sq{position:absolute;border:2px solid rgba(37,99,235,.1);border-radius:3px;}
+.sbg-dots{position:absolute;display:flex;gap:9px;}
+.sbg-dots span{width:4px;height:4px;border-radius:50%;background:rgba(37,99,235,.14);display:block;}
+.sbg-line{position:absolute;background:rgba(37,99,235,.07);height:2px;}
+.sbg-zig{position:absolute;color:rgba(37,99,235,.13);font-size:1rem;letter-spacing:3px;white-space:nowrap;}
+.sbg-cross{position:absolute;font-size:1.6rem;font-weight:900;color:rgba(37,99,235,.1);}
+.about-section>*:not(.sbg){position:relative;z-index:1;}
+.sec-label{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-size:.82rem;font-weight:600;padding:7px 18px;border-radius:50px;margin-bottom:28px;}
+.about-grid{display:grid;grid-template-columns:1.4fr .8fr 1fr;gap:28px;align-items:start;margin-top:8px;}
+.about-card{background:#fff;border-radius:20px;padding:32px;box-shadow:0 4px 24px rgba(37,99,235,.07);}
+.about-card h2{font-size:1.7rem;font-weight:800;line-height:1.3;margin-bottom:16px;}
+.about-card h2 .hl{color:var(--blue);font-style:italic;}
+.about-card>p{font-size:.85rem;color:var(--gray);line-height:1.8;margin-bottom:24px;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.info-item{display:flex;align-items:flex-start;gap:10px;}
+.info-item i{color:var(--blue);font-size:.88rem;margin-top:3px;width:16px;flex-shrink:0;}
+.info-label{font-size:.72rem;color:var(--gray);}
+.info-val{font-size:.82rem;font-weight:600;}
+.avatar-card{background:#fff;border-radius:20px;padding:28px 20px;box-shadow:0 4px 24px rgba(37,99,235,.07);display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;}
+.avatar-ring{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:4rem;color:rgba(255,255,255,.65);overflow:hidden;flex-shrink:0;}
+.avatar-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.avatar-quote{font-size:.8rem;color:var(--gray);font-style:italic;line-height:1.6;}
+.avatar-quote::before{content:'\201C';color:var(--blue);font-size:1.3rem;}
+.avatar-quote::after{content:'\201D';color:var(--blue);font-size:1.3rem;}
+.avatar-sig{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--blue);font-weight:700;}
+
+/* ─── EXPERTISE CARD ─── */
+.expertise-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 4px 24px rgba(37,99,235,.07);}
+.expertise-card h3{font-size:1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.expertise-card h3 i{color:var(--blue);}
+.exp-tabs{display:flex;gap:6px;margin-bottom:16px;}
+.exp-tab{font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:50px;border:1.5px solid rgba(37,99,235,.2);background:none;color:var(--gray);cursor:pointer;font-family:inherit;transition:all .22s;}
+.exp-tab.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+/* ── PANEL WRAPPER with height animation ── */
+.exp-panels-wrap{
+  position:relative;
+  /* height set by JS */
+  transition:height .42s cubic-bezier(.22,1,.36,1);
+  overflow:hidden;
+}
+.exp-panel{
+  position:absolute;top:0;left:0;width:100%;
+  opacity:0;transform:translateY(14px) scale(.98);
+  transition:opacity .35s cubic-bezier(.22,1,.36,1),
+             transform .35s cubic-bezier(.22,1,.36,1);
+  pointer-events:none;
+}
+.exp-panel.active{
+  position:relative; /* takes space */
+  opacity:1;transform:none;
+  pointer-events:auto;
+}
+/* outgoing panel */
+.exp-panel.leaving{
+  position:absolute;top:0;left:0;width:100%;
+  opacity:0;transform:translateY(-10px) scale(.98);
+  pointer-events:none;
+}
+
+/* Software grid */
+.sw-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;}
+.sw-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg);border-radius:10px;transition:transform .2s,box-shadow .2s;}
+.sw-item:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.1);}
+.sw-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#fff;flex-shrink:0;}
+.sw-ae{background:linear-gradient(135deg,#9999ff,#6666cc);}
+.sw-am{background:linear-gradient(135deg,#ff6b35,#e55a2b);}
+.sw-cc{background:linear-gradient(135deg,#00d4e0,#00a8b5);}
+.sw-pr{background:linear-gradient(135deg,#9999ff,#4a4a99);}
+.sw-dv{background:linear-gradient(135deg,#e8b84b,#c99a3a);}
+.sw-name{font-size:.78rem;font-weight:600;color:var(--dark);}
+.sw-level{font-size:.68rem;color:var(--gray);}
+
+/* Softskill chips */
+.soft-grid{display:flex;flex-wrap:wrap;gap:8px;padding:4px 0;}
+.soft-chip{display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:10px;background:var(--bg);border:1.5px solid rgba(37,99,235,.15);transition:transform .2s,box-shadow .2s,border-color .2s;}
+.soft-chip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.1);border-color:rgba(37,99,235,.35);}
+.soft-chip i{color:var(--blue);font-size:.82rem;}
+.soft-chip span{font-size:.78rem;font-weight:600;color:var(--dark);}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px;}
+.stat-item{text-align:center;padding:14px 8px;background:var(--bg);border-radius:12px;}
+.stat-num{font-size:1.2rem;font-weight:800;color:var(--blue);}
+.stat-label{font-size:.68rem;color:var(--gray);}
+.stat-item i{font-size:1rem;color:var(--blue);margin-bottom:4px;display:block;}
+
+/* ─── VIDEO / PHOTO PAGES ─── */
+.content-page{padding-top:80px;min-height:100vh;background:linear-gradient(160deg,#e8f4ff 0%,#f0f6ff 100%);position:relative;z-index:1;}
+.page-header{padding:32px 60px 0;}
+.page-header h2{font-size:1.6rem;font-weight:800;margin-bottom:6px;}
+.page-header p{font-size:.87rem;color:var(--gray);}
+.page-header .hl{color:var(--blue);}
+.page-hdr-divider{width:50px;height:3px;background:var(--blue);border-radius:2px;margin:14px 0 28px;}
+.media-section{padding:0 60px 40px;}
+.media-section h3{font-size:1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.media-section h3 i{color:var(--blue);}
+.grid-vid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.grid-photo{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
+.media-card{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.15);transition:transform .3s,box-shadow .3s;}
+.media-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(37,99,235,.2);}
+.vc{aspect-ratio:16/9;}.pc{aspect-ratio:4/3;}
+.media-card img,
+.media-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .3s;background:#000;z-index:1;}
+.card-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;z-index:0;animation:fadeIn .4s ease-in forwards;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.media-card:hover img,
+.media-card:hover video{filter:brightness(.7);}
+.card-icon,
+.card-ov,
+.card-info{z-index:2;}
+.card-icon{font-size:2.4rem;color:rgba(255,255,255,.2);position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);transition:opacity .3s;}
+.media-card:hover .card-icon{opacity:0;}
+.card-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;background:rgba(0,0,0,.18);}
+.media-card:hover .card-ov{opacity:1;}
+.play-btn{width:46px;height:46px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1rem;padding-left:3px;transition:transform .2s;}
+.media-card:hover .play-btn{transform:scale(1.12);}
+.card-info{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;background:linear-gradient(0deg,rgba(0,0,0,.76) 0%,transparent 100%);color:#fff;}
+.card-cat{font-size:.65rem;font-weight:700;color:var(--blue-l);text-transform:uppercase;letter-spacing:.5px;}
+.card-ttl{font-size:.82rem;font-weight:500;}
+.mc-1{background:linear-gradient(135deg,#f97316,#7c2d12);}
+.mc-2{background:linear-gradient(135deg,#1e1b4b,#312e81);}
+.mc-3{background:linear-gradient(135deg,#111827,#374151);}
+.mc-4{background:linear-gradient(135deg,#0c4a6e,#0ea5e9);}
+.mc-5{background:linear-gradient(135deg,#065f46,#059669);}
+.mc-6{background:linear-gradient(135deg,#7c3aed,#4f46e5);}
+.mc-7{background:linear-gradient(135deg,#1e40af,#3b82f6);}
+.mc-8{background:linear-gradient(135deg,#831843,#be185d);}
+.mc-9{background:linear-gradient(135deg,#1c1917,#44403c);}
+.mc-10{background:linear-gradient(135deg,#134e4a,#0f766e);}
+.pg-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.content-page>*:not(.pg-deco){position:relative;z-index:1;}
+
+/* ─── SOCIAL / FOOTER ─── */
+.social-sec{background:#f0f6ff;padding:40px 60px;text-align:center;position:relative;z-index:1;}
+.social-title{font-size:.9rem;color:var(--gray);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:14px;}
+.social-title::before,.social-title::after{content:'';display:block;height:1px;width:60px;background:var(--gray);opacity:.4;}
+.social-icons{display:flex;justify-content:center;gap:16px;}
+.social-icons a{width:48px;height:48px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.1rem;box-shadow:0 4px 16px rgba(37,99,235,.12);text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s,color .2s;}
+.social-icons a:hover{transform:translateY(-4px);background:var(--blue);color:#fff;box-shadow:0 8px 24px rgba(37,99,235,.3);}
+footer{background:#fff;padding:20px 60px;text-align:center;font-size:.8rem;color:var(--gray);border-top:1px solid rgba(37,99,235,.08);position:relative;z-index:1;}
+footer span{color:var(--blue);font-weight:600;}
+
+/* ─── MEDIA MODAL ─── */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .4s ease;}
+.modal-ov.active{display:flex;opacity:1;}
+.modal-ov.closing{opacity:0;}
+.modal-box{background:#fff;border-radius:20px;padding:24px;width:100%;max-width:800px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.18);transform:scale(.9) translateY(20px);opacity:0;transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .4s ease;}
+.modal-ov.active .modal-box{transform:scale(1) translateY(0);opacity:1;}
+.modal-ov.closing .modal-box{transform:scale(.9) translateY(20px);opacity:0;}
+.modal-box.photo-preview{max-width:fit-content;min-width:320px;padding:20px;}
+.modal-close{position:absolute;top:14px;right:18px;font-size:1.4rem;cursor:pointer;color:var(--gray);background:none;border:none;transition:color .2s;}
+.modal-close:hover{color:var(--dark);}
+.modal-vid{max-inline-size:90vw;max-height:76vh;min-height:240px;aspect-ratio:16/9;border-radius:12px;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;text-align:center;gap:10px;flex-direction:column;overflow:hidden;position:relative;inline-size:auto;block-size:auto;margin:0 auto;opacity:0;transform:scale(.95);transition:opacity .6s ease .2s,transform .6s ease .2s;}
+.modal-ov.active .modal-vid{opacity:1;transform:scale(1);}
+.modal-ov.closing .modal-vid{opacity:0;transform:scale(.95);}
+.modal-vid iframe,.modal-vid video{inline-size:100%;block-size:100%;border:none;display:block;object-fit:cover;}
+.modal-photo{display:none;margin:0 auto;padding:0;border-radius:12px;background:transparent;overflow:hidden;position:relative;justify-content:center;align-items:center;text-align:center;}
+.modal-photo img{display:block;max-width:90vw;max-height:76vh;width:auto;height:auto;margin:auto;object-fit:contain;opacity:0;transform:scale(.95);transition:opacity .6s ease .2s,transform .6s ease .2s;}
+.modal-ov.active .modal-photo img{opacity:1;transform:scale(1);}
+.modal-ov.closing .modal-photo img{opacity:0;transform:scale(.95);}
+.modal-vid i{font-size:3rem;color:var(--blue-l);}
+
+/* ─── CONTACT POPUP ─── */
+#cp{display:none;position:fixed;inset:0;z-index:10000;align-items:center;justify-content:center;background:rgba(15,23,42,0);transition:background .35s,backdrop-filter .35s;backdrop-filter:blur(0px);}
+#cp.open{display:flex;background:rgba(15,23,42,.55);backdrop-filter:blur(8px);}
+.cp-box{background:#fff;border-radius:24px;padding:36px 32px;width:90%;max-width:460px;position:relative;transform:scale(.85) translateY(32px);opacity:0;transition:transform .44s cubic-bezier(.22,1,.36,1),opacity .36s;overflow:hidden;}
+#cp.open .cp-box{transform:none;opacity:1;}
+.cp-close{position:absolute;top:14px;right:18px;font-size:1.3rem;cursor:pointer;color:var(--gray);background:none;border:none;transition:color .2s;}
+.cp-close:hover{color:var(--dark);}
+.cp-head{text-align:center;margin-bottom:24px;}
+.cp-icon{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#60a5fa);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;margin:0 auto 14px;box-shadow:0 8px 24px rgba(37,99,235,.35);animation:iPop .5s cubic-bezier(.34,1.56,.64,1) .1s both;}
+@keyframes iPop{from{transform:scale(0) rotate(-20deg);opacity:0;}to{transform:none;opacity:1;}}
+.cp-title{font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,#1e40af,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
+.cp-sub{font-size:.82rem;color:var(--gray);}
+.cp-list{display:flex;flex-direction:column;gap:10px;}
+.cp-card{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:14px;text-decoration:none;color:var(--dark);background:#f5f9ff;border:1.5px solid rgba(37,99,235,.1);opacity:0;transform:translateX(-22px);transition:transform .22s,box-shadow .22s,background .22s,border-color .22s,opacity .22s;}
+.cp-card.show{opacity:1;transform:none;}
+.cp-card:hover{transform:translateX(6px);box-shadow:0 6px 20px rgba(37,99,235,.15);border-color:rgba(37,99,235,.35);background:#fff;}
+.cp-cicon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;flex-shrink:0;transition:transform .2s;}
+.cp-card:hover .cp-cicon{transform:scale(1.1) rotate(-6deg);}
+.c-fb .cp-cicon{background:linear-gradient(135deg,#1877f2,#166fe5);}
+.c-ig .cp-cicon{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.c-li .cp-cicon{background:linear-gradient(135deg,#0077b5,#005582);}
+.c-tt .cp-cicon{background:linear-gradient(135deg,#010101,#69c9d0);}
+.c-em .cp-cicon{background:linear-gradient(135deg,#2563eb,#60a5fa);}
+.cp-info{flex:1;}
+.cp-name{font-size:.88rem;font-weight:700;}
+.cp-handle{font-size:.74rem;color:var(--gray);}
+.cp-arr{font-size:.7rem;color:var(--gray);opacity:.5;transition:opacity .2s,transform .2s;}
+.cp-card:hover .cp-arr{opacity:1;transform:translate(3px,-3px);color:var(--blue);}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .52s ease,transform .52s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+@media(max-width:900px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  .hero-content{padding:0 22px;max-width:100%;margin-left:0;}
+  .hero-art{display:none;}
+  .about-section{padding:40px 20px;}
+  .about-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+  .page-header,.media-section{padding-left:20px;padding-right:20px;}
+  .social-sec{padding:32px 20px;}
+  footer{padding:16px 20px;}
+  .sw-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div id="tov"></div>
+
+<!-- BG -->
+<div class="bgc">
+  <div class="bgc-dots"></div>
+  <div class="bgb b1"></div><div class="bgb b2"></div><div class="bgb b3"></div>
+  <div class="bgb b4"></div><div class="bgb b5"></div><div class="bgb b6"></div>
+  <div class="fg fg-ring" style="width:260px;height:260px;top:8%;left:2%;--d:22s"></div>
+  <div class="fg fg-ring rev" style="width:140px;height:140px;top:25%;left:8%;--d:15s"></div>
+  <div class="fg fg-ring" style="width:90px;height:90px;top:60%;left:4%;--d:10s"></div>
+  <div class="fg fg-ring rev" style="width:200px;height:200px;bottom:10%;right:4%;--d:18s"></div>
+  <div class="fg fg-ring" style="width:110px;height:110px;top:38%;right:2%;--d:13s"></div>
+  <div class="fg fg-ring rev" style="width:60px;height:60px;bottom:30%;left:45%;--d:8s"></div>
+  <div class="fg fg-ring" style="width:40px;height:40px;top:20%;left:30%;--d:7s"></div>
+  <div class="fg fg-ring rev" style="width:170px;height:170px;top:5%;left:20%;--d:25s"></div>
+  <div class="fg fg-star" style="font-size:1.1rem;top:12%;left:15%;--d:5s;animation-delay:.3s">✦</div>
+  <div class="fg fg-star" style="font-size:1.6rem;top:7%;right:22%;--d:7s;animation-delay:.9s">✦</div>
+  <div class="fg fg-star" style="font-size:.8rem;top:48%;left:22%;--d:4.5s;animation-delay:1.5s">✦</div>
+  <div class="fg fg-star" style="font-size:1rem;bottom:22%;right:15%;--d:6s;animation-delay:2s">✦</div>
+  <div class="fg fg-star" style="font-size:.7rem;bottom:8%;left:40%;--d:5.5s;animation-delay:.6s">✦</div>
+  <div class="fg fg-star" style="font-size:1.3rem;top:35%;right:38%;--d:8s;animation-delay:1.2s">✦</div>
+  <div class="fg fg-star" style="font-size:.9rem;top:62%;right:55%;--d:6.5s;animation-delay:.4s">✦</div>
+  <div class="fg fg-cross" style="font-size:1.8rem;top:18%;left:32%;--d:9s">✕</div>
+  <div class="fg fg-cross" style="font-size:1.3rem;bottom:15%;right:32%;--d:12s;animation-delay:1s">✕</div>
+  <div class="fg fg-cross" style="font-size:1rem;top:55%;left:55%;--d:7s;animation-delay:2s">✕</div>
+  <div class="fg fg-cross" style="font-size:1.4rem;bottom:40%;left:25%;--d:10s;animation-delay:.7s">✕</div>
+  <div class="fg fg-tri" style="top:20%;right:10%;--s:18px;--d:8s;animation-delay:.5s"></div>
+  <div class="fg fg-tri" style="bottom:25%;left:18%;--s:12px;--d:6s;animation-delay:1.8s;transform:rotate(180deg)"></div>
+  <div class="fg fg-tri" style="top:70%;right:28%;--s:14px;--d:9s;animation-delay:1s"></div>
+  <div class="fg fg-tri" style="top:42%;left:60%;--s:10px;--d:7.5s;animation-delay:2.2s"></div>
+  <div class="fg fg-sq" style="width:22px;height:22px;top:42%;left:38%;--d:14s"></div>
+  <div class="fg fg-sq" style="width:16px;height:16px;bottom:18%;right:42%;--d:10s"></div>
+  <div class="fg fg-sq" style="width:28px;height:28px;top:15%;right:48%;--d:18s"></div>
+  <div class="fg fg-sq" style="width:12px;height:12px;bottom:50%;left:28%;--d:11s"></div>
+  <div class="fg fg-dia" style="width:18px;height:18px;top:65%;left:10%;--d:11s"></div>
+  <div class="fg fg-dia" style="width:12px;height:12px;bottom:40%;right:10%;--d:8s"></div>
+  <div class="fg fg-dia" style="width:20px;height:20px;top:28%;right:20%;--d:13s;animation-delay:1.5s"></div>
+  <div class="fg fg-hex" style="width:40px;height:46px;top:30%;left:48%;--d:10s;animation-delay:1s"></div>
+  <div class="fg fg-hex" style="width:28px;height:32px;bottom:20%;right:55%;--d:14s;animation-delay:2s"></div>
+  <div class="fg fg-dash" style="width:120px;top:22%;left:25%;--d:7s;--rot:-20deg"></div>
+  <div class="fg fg-dash" style="width:80px;bottom:35%;right:25%;--d:9s;--rot:15deg"></div>
+  <div class="fg fg-dash" style="width:60px;top:75%;left:62%;--d:6s;--rot:30deg"></div>
+  <div class="fg fg-dash" style="width:100px;top:50%;right:35%;--d:8s;--rot:-10deg"></div>
+  <div class="fg fg-dr" style="top:82%;left:20%;--d:7s"><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="fg fg-dr" style="top:5%;left:50%;--d:9s;animation-delay:1s"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="fg fg-dr" style="bottom:12%;right:22%;--d:6s"><span></span><span></span><span></span><span></span></div>
+  <div class="fg fg-dr" style="top:35%;left:3%;--d:8s;animation-delay:1.3s"><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="fg fg-arc" style="width:80px;height:80px;top:52%;right:45%;--d:12s"></div>
+  <div class="fg fg-arc" style="width:50px;height:50px;bottom:42%;left:32%;--d:9s"></div>
+  <div class="fg fg-arc" style="width:100px;height:100px;top:15%;left:42%;--d:15s;animation-delay:2s"></div>
+</div>
+
+<!-- NAVBAR — Video sekarang tanpa dropdown, persis seperti Photo -->
+<nav>
+  <a class="logo" onclick="navHome();return false;" href="#"><span>Ahmad</span><span class="logo-blue">Zaky</span></a>
+  <ul class="nav-links">
+    <li><a href="#" id="nav-home" onclick="navHome();return false;">Home</a></li>
+    <li><a href="#" id="nav-about" onclick="navAbout();return false;">About</a></li>
+    <li><button class="nav-btn" id="nav-video" onclick="goVideo()">Video</button></li>
+    <li><button class="nav-btn" id="nav-photo" onclick="goPhoto()">Photo</button></li>
+  </ul>
+  <button class="btn-cta" onclick="openCP()"><i class="fa fa-paper-plane"></i> Contact Me</button>
+</nav>
+
+<!-- ══ HOME ══ -->
+<div class="page" id="page-home">
+  <section class="hero" id="hero">
+    <div class="hero-deco">
+      <div class="big-glow"></div>
+      <div class="fg fg-ring" style="width:220px;height:220px;top:80px;left:340px;position:absolute;--d:20s"></div>
+      <div class="fg fg-ring rev" style="width:130px;height:130px;bottom:130px;left:80px;position:absolute;--d:14s"></div>
+      <div class="fg fg-cross" style="position:absolute;top:130px;left:495px;font-size:2rem;--d:6s">✕</div>
+      <div class="fg fg-cross" style="position:absolute;bottom:115px;right:215px;font-size:1.3rem;animation-delay:1s;--d:8s">✕</div>
+      <div class="fg fg-tri" style="position:absolute;top:205px;right:295px;--s:18px;--d:8s"></div>
+      <div class="fg fg-tri" style="position:absolute;bottom:155px;left:415px;--s:14px;--d:7s;transform:rotate(180deg)"></div>
+      <div class="fg fg-sq" style="position:absolute;top:345px;left:195px;width:28px;height:28px;transform:rotate(18deg);--d:12s"></div>
+      <div class="fg fg-star" style="position:absolute;top:118px;left:468px;font-size:1.1rem;animation-delay:.3s;--d:5s">✦</div>
+      <div class="fg fg-star" style="position:absolute;top:76px;right:236px;font-size:1.6rem;animation-delay:.8s;--d:7s">✦</div>
+      <div class="fg fg-star" style="position:absolute;bottom:78px;right:178px;font-size:1rem;animation-delay:2s;--d:6s">✦</div>
+      <div class="fg fg-dr" style="position:absolute;top:295px;right:275px;--d:8s"><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="hero-blob"></div>
+    <div class="hero-content reveal">
+      <p class="hero-greeting">Hello guys 👋</p>
+      <h1 class="hero-name">I am <span class="hl">Ahmad<br>Zaky</span></h1>
+      <p class="hero-title">Videography/Editing <span>Pemula</span></p>
+      <div class="hero-divider"></div>
+      <p class="hero-desc">Saya memiliki passion besar dalam editing, videografi, dan fotografi. Bagi saya, visual bukan sekadar gambar atau video, melainkan cara untuk menyampaikan cerita, emosi, dan perspektif unik.</p>
+      <p class="hero-desc">Pada awalnya saya hanya fokus pada style editing amv, namun sekarang saya juga mengeksplor area lain dalam dunia videografi dan editing.</p>
+    </div>
+    <div class="hero-art">
+      <div class="hero-profile">
+        <img src="foto/utama1.jpg" alt="foto profil">
+      </div>
+    </div>
+  </section>
+
+  <div class="wave">
+    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 30 C360 60 1080 0 1440 30 L1440 60 L0 60 Z" fill="#e8f4ff"/>
+    </svg>
+  </div>
+
+  <section class="about-section" id="about">
+    <div class="sbg">
+      <div class="sbg-blob" style="width:260px;height:260px;top:-55px;left:-55px"></div>
+      <div class="sbg-blob" style="width:180px;height:180px;bottom:-35px;right:4%"></div>
+      <div class="sbg-ring" style="width:200px;height:200px;top:38px;right:115px"></div>
+      <div class="sbg-ring" style="width:110px;height:110px;bottom:58px;left:48%"></div>
+      <div class="sbg-ring" style="width:60px;height:60px;top:80px;left:38%"></div>
+      <div class="sbg-tri" style="top:65px;left:53%"></div>
+      <div class="sbg-tri" style="bottom:48px;right:23%;transform:rotate(120deg)"></div>
+      <div class="sbg-sq" style="top:98px;left:4%;width:24px;height:24px"></div>
+      <div class="sbg-sq" style="bottom:58px;right:11%;width:16px;height:16px;transform:rotate(50deg)"></div>
+      <div class="sbg-dots" style="top:18px;left:18%"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="sbg-dots" style="bottom:18px;right:18%"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="sbg-line" style="width:150px;bottom:48px;left:28%;transform:rotate(8deg)"></div>
+      <div class="sbg-zig" style="top:18px;right:7%">~ ~ ~ ~ ~</div>
+      <div class="sbg-cross" style="bottom:40px;left:42%">✕</div>
+      <div class="sbg-cross" style="top:40px;right:45%">✕</div>
+    </div>
+    <div class="sec-label reveal"><i class="fa fa-user"></i> About Me</div>
+    <div class="about-grid">
+
+      <!-- Info -->
+      <div class="about-card reveal">
+        <h2>Let me<br>introduce <span class="hl">myself</span> ☆</h2>
+        <p>Halo, saya Zaky. Saya memiliki passion besar di dunia editing, videografi, dan fotografi. Bagi saya, setiap momen adalah cerita, dan setiap detail bisa menjadi karya visual yang bermakna.</p>
+        <div class="info-grid">
+          <div class="info-item"><i class="fa fa-user"></i><div><div class="info-label">Name</div><div class="info-val">Ahmad Zaky</div></div></div>
+          <div class="info-item"><i class="fa fa-calendar"></i><div><div class="info-label">Date of Birth</div><div class="info-val">23 Oktober 2006</div></div></div>
+          <div class="info-item"><i class="fa fa-location-dot"></i><div><div class="info-label">Location</div><div class="info-val">Indonesia</div></div></div>
+          <div class="info-item"><i class="fa fa-envelope"></i><div><div class="info-label">Email</div><div class="info-val">zaky.ahmad849@gmail.com</div></div></div>
+          <div class="info-item"><i class="fa fa-tag"></i><div><div class="info-label">Nickname</div><div class="info-val">Zaky</div></div></div>
+          <div class="info-item"><i class="fa fa-briefcase"></i><div><div class="info-label">Freelance</div><div class="info-val">Available</div></div></div>
+        </div>
+      </div>
+
+      <!-- Avatar -->
+      <div class="avatar-card reveal">
+        <div class="avatar-ring"><img src="foto/my.png" alt="formal"></div>
+        <p style="font-size:.9rem;color:var(--blue-l)">✦ ✦</p>
+        <p class="avatar-quote">Ilmu bukan hanya untuk dipahami, tapi juga untuk diwujudkan dalam sebuah karya. The more you create, the more you grow and learn.</p>
+        <div class="avatar-sig">Portofolio</div>
+      </div>
+
+      <!-- Skills -->
+      <div class="expertise-card reveal">
+        <h3><i class="fa fa-layer-group"></i> My Skills</h3>
+        <div class="exp-tabs">
+          <button class="exp-tab active" id="tab-software" onclick="switchExp('software',this)">Software</button>
+          <button class="exp-tab" id="tab-soft" onclick="switchExp('soft',this)">Softskill</button>
+        </div>
+
+        <div class="exp-panels-wrap" id="exp-wrap">
+          <!-- SOFTWARE -->
+          <div class="exp-panel active" id="exp-software">
+            <div class="sw-grid">
+              <div class="sw-item"><div class="sw-icon sw-ae"><i class="fa fa-wand-magic-sparkles"></i></div><div><div class="sw-name">After Effects</div><div class="sw-level">Motion & VFX</div></div></div>
+              <div class="sw-item"><div class="sw-icon sw-am"><i class="fa fa-bolt"></i></div><div><div class="sw-name">Alight Motion</div><div class="sw-level">Mobile Editing</div></div></div>
+              <div class="sw-item"><div class="sw-icon sw-cc"><i class="fa fa-scissors"></i></div><div><div class="sw-name">CapCut</div><div class="sw-level">Quick Editing</div></div></div>
+              <div class="sw-item"><div class="sw-icon sw-pr"><i class="fa fa-film"></i></div><div><div class="sw-name">Premiere Pro</div><div class="sw-level">Video Editing</div></div></div>
+              <div class="sw-item"><div class="sw-icon sw-dv"><i class="fa fa-palette"></i></div><div><div class="sw-name">DaVinci Resolve</div><div class="sw-level">Color Grading</div></div></div>
+            </div>
+          </div>
+          <!-- SOFTSKILL -->
+          <div class="exp-panel" id="exp-soft">
+            <div class="soft-grid">
+              <div class="soft-chip"><i class="fa fa-microphone"></i><span>Public Speaking</span></div>
+              <div class="soft-chip"><i class="fa fa-users"></i><span>Teamwork</span></div>
+              <div class="soft-chip"><i class="fa fa-clock"></i><span>Disiplin</span></div>
+              <div class="soft-chip"><i class="fa fa-fire"></i><span>Pekerja Keras</span></div>
+              <div class="soft-chip"><i class="fa fa-calendar-check"></i><span>Manajemen Waktu</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-item"><i class="fa fa-folder-open"></i><div class="stat-num">30+</div><div class="stat-label">Projects</div></div>
+          <div class="stat-item"><i class="fa fa-clock"></i><div class="stat-num">2+</div><div class="stat-label">Years Exp</div></div>
+          <div class="stat-item"><i class="fa fa-globe"></i><div class="stat-num">100%</div><div class="stat-label">WNI</div></div>
+          <div class="stat-item"><i class="fa fa-heart"></i><div class="stat-num">100%</div><div class="stat-label">Passion</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="social-sec" id="contact">
+    <div class="sbg">
+      <div class="sbg-ring" style="width:120px;height:120px;top:8px;left:9%"></div>
+      <div class="sbg-ring" style="width:80px;height:80px;bottom:8px;right:11%"></div>
+      <div class="sbg-dots" style="top:14px;right:28%"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="sbg-cross" style="bottom:12px;right:38%">✕</div>
+    </div>
+    <p class="social-title">Find Me On</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/ahmad.zaky.318" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/kyaz.cuby" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/ahmad-zaky-716570389" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.tiktok.com/@az_ind67" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </section>
+  <footer><p>© 2026 <span>Portofolio</span> – Ahmad Zaky. All rights reserved.</p></footer>
+</div>
+
+<!-- ══ VIDEO ══ -->
+<div class="page" id="page-video">
+  <div class="content-page">
+    <div class="pg-deco">
+      <div class="sbg-blob" style="width:300px;height:300px;top:-60px;right:-60px;position:absolute;border-radius:50%;filter:blur(60px);opacity:.1;background:#60a5fa"></div>
+      <div class="sbg-blob" style="width:220px;height:220px;bottom:5%;left:-50px;position:absolute;border-radius:50%;filter:blur(60px);opacity:.1;background:#93c5fd"></div>
+      <div class="fg fg-ring" style="width:180px;height:180px;top:60px;left:40px;position:absolute;--d:20s"></div>
+      <div class="fg fg-ring rev" style="width:100px;height:100px;bottom:80px;right:60px;position:absolute;--d:14s"></div>
+      <div class="fg fg-star" style="position:absolute;top:80px;right:15%;font-size:1.2rem;--d:6s">✦</div>
+      <div class="fg fg-cross" style="position:absolute;top:40px;left:30%;font-size:1.4rem;--d:9s">✕</div>
+    </div>
+    <div class="page-header reveal">
+      <h2>Video <span class="hl">Karya</span></h2>
+      <p>Koleksi hasil editing / video saya</p>
+      <div class="page-hdr-divider"></div>
+    </div>
+    <div class="media-section">
+      <h3><i class="fa fa-video"></i> Semua Video</h3>
+      <div class="grid-vid">
+        <!-- CINEMATIC -->
+        <!-- Ganti 'YT_ID_HERE' dengan YouTube Video ID dari channel Anda -->
+        <div class="media-card vc mc-1 reveal" onclick="openVid('Cinematic RTX AI PC DAY','drive:1ZoDM98xqBK9sNwoMrAoGkgA6AMRSzr0l')"><div class="card-icon"><i class="fa fa-film"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">Cinematic</div><div class="card-ttl">RTX Event</div></div></div>
+        <div class="media-card vc mc-1 reveal" onclick="openVid('Cinematic Event SMA N 1 Ampek Angkek','drive:14Ts2g8DIH1bUzCoVACY4P61S_xEAkAh1')"><div class="card-icon"><i class="fa fa-film"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">Cinematic</div><div class="card-ttl">School Event</div></div></div>
+        <div class="media-card vc mc-1 reveal" onclick="openVid('Cinematic Laptop','drive:1n3xfnUPtXTT4Jy8Ezb2MxhbnwELTMbXk')"><div class="card-icon"><i class="fa fa-film"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">Cinematic</div><div class="card-ttl">Laptop</div></div></div>
+        <div class="media-card vc mc-1 reveal" onclick="openVid('Cinematic DUMP','drive:1dFKs8vfLzHF6Re7Vd7f4N1V_tiWGWjiv')"><div class="card-icon"><i class="fa fa-film"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">Cinematic</div><div class="card-ttl">DUMP Project</div></div></div>
+        <div class="media-card vc mc-1 reveal" onclick="openVid('Cinematic LOG Xiaomi 9','drive:1L5CDZ_gN-LRUQz3NJ-i5Rk2hCgpi-pld')"><div class="card-icon"><i class="fa fa-film"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">Cinematic</div><div class="card-ttl">Log Xiaomi 9</div></div></div>
+        <div class="media-card vc mc-1 reveal" onclick="openVid('Cinematic LOG Xiaomi 9 - part 2','drive:1jUz2MhElKzhzE7QJWICigU8FmvUD6CVD')"><div class="card-icon"><i class="fa fa-film"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">Cinematic</div><div class="card-ttl">Log Xiaomi 9 - part 2</div></div></div>
+        <!-- AMV - Ganti dengan YouTube Video ID -->
+        <div class="media-card vc mc-2 reveal" onclick="openVid('AMV – Anime Edit','drive:1UeSLIbMDK6KIMVUExfBE3bYOBnfmiKad')"><div class="card-icon"><i class="fa fa-star"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">AMV</div><div class="card-ttl">Anime Edit</div></div></div>
+        <div class="media-card vc mc-2 reveal" onclick="openVid('AMV – Anime Edit','drive:1kNqxQFcdh1DnG6tXYrMvgXWAPbxsTQ59')"><div class="card-icon"><i class="fa fa-star"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">AMV</div><div class="card-ttl">Anime Edit</div></div></div>
+        <div class="media-card vc mc-2 reveal" onclick="openVid('AMV – Anime Edit','drive:11ggz9QwPkdwXZ5K4oECw2hY6gKqrA8Rz')"><div class="card-icon"><i class="fa fa-star"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">AMV</div><div class="card-ttl">Anime Edit</div></div></div>
+        <div class="media-card vc mc-2 reveal" onclick="openVid('AMV – Anime Edit','drive:1RlyGZnA9BtQZ1KqifAsG9VOJLQR3mxX0')"><div class="card-icon"><i class="fa fa-star"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">AMV</div><div class="card-ttl">Anime Edit</div></div></div>
+        <div class="media-card vc mc-2 reveal" onclick="openVid('AMV – Anime Edit','drive:1gPFTi2GgwTRmdtaqgt6--WgtidOOAIUj')"><div class="card-icon"><i class="fa fa-star"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">AMV</div><div class="card-ttl">Anime Edit</div></div></div>
+        <div class="media-card vc mc-2 reveal" onclick="openVid('AMV – Anime Edit','drive:1d5qMRE7jI4x8pZUlj5vJuYqDFlzljzja')"><div class="card-icon"><i class="fa fa-star"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">AMV</div><div class="card-ttl">Anime Edit</div></div></div>
+        <div class="media-card vc mc-2 reveal" onclick="openVid('AMV – Anime Edit','drive:1SRDfvNCqSK0qwTtXWef7d_mrI5MEi1Pc')"><div class="card-icon"><i class="fa fa-star"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">AMV</div><div class="card-ttl">Anime Edit</div></div></div>
+        <!-- PARODI - Ganti dengan YouTube Video ID -->
+        <div class="media-card vc mc-5 reveal" onclick="openVid('Parodi – Comedy Edit','drive:1qNHw6sRaYKW869nQN8LYrKMP3vWjby4q')"><div class="card-icon"><i class="fa fa-mask"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">Parodi (EXE)</div><div class="card-ttl">Comedy Edit</div></div></div>
+        <div class="media-card vc mc-5 reveal" onclick="openVid('Parodi – Comedy Edit','drive:1VvD2hbbndAccHgoi-Maj660y2FYQ4jdU')"><div class="card-icon"><i class="fa fa-mask"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">Parodi (EXE)</div><div class="card-ttl">Comedy Edit</div></div></div>
+        <!-- PMV - Ganti dengan YouTube Video ID -->
+        <div class="media-card vc mc-8 reveal" onclick="openVid('PMV – Class Edit','drive:1h7B96k5Rx_0fzxia1QiMMg1aAi29LaCz')"><div class="card-icon"><i class="fa fa-heart"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-play"></i></div></div><div class="card-info"><div class="card-cat">PMV</div><div class="card-ttl">Class Edit</div></div></div>
+      </div>
+    </div>
+  </div>
+  <section class="social-sec"><p class="social-title">Find Me On</p><div class="social-icons"><a href="https://www.facebook.com/ahmad.zaky.318" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/kyaz.cuby" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://www.linkedin.com/in/ahmad-zaky-716570389" target="_blank"><i class="fab fa-linkedin-in"></i></a><a href="https://www.tiktok.com/@az_ind67" target="_blank"><i class="fab fa-tiktok"></i></a></div></section>
+  <footer><p>© 2026 <span>Portofolio</span> – Ahmad Zaky. All rights reserved.</p></footer>
+</div>
+
+<!-- ══ PHOTO ══ -->
+<div class="page" id="page-photo">
+  <div class="content-page">
+    <div class="pg-deco">
+      <div class="sbg-blob" style="width:280px;height:280px;top:-50px;left:-50px;position:absolute;border-radius:50%;filter:blur(60px);opacity:.1;background:#60a5fa"></div>
+      <div class="fg fg-ring" style="width:160px;height:160px;top:50px;right:60px;position:absolute;--d:18s"></div>
+      <div class="fg fg-star" style="position:absolute;top:70px;left:20%;font-size:1.1rem;--d:6s">✦</div>
+      <div class="fg fg-cross" style="position:absolute;bottom:80px;right:20%;font-size:1.4rem;--d:8s">✕</div>
+    </div>
+    <div class="page-header reveal">
+      <h2>Foto <span class="hl">Karya</span></h2>
+      <p>Koleksi fotografi saya</p>
+      <div class="page-hdr-divider"></div>
+    </div>
+    <div class="media-section">
+      <h3><i class="fa fa-camera"></i> Galeri Foto</h3>
+      <div class="grid-photo">
+        <div class="media-card pc mc-2 reveal" onclick="openPhoto('Portrait – Kampus','foto/bangunan.jpg')"><div class="card-icon"><i class="fa fa-person"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Kampus</div></div></div>
+        <div class="media-card pc mc-2 reveal" onclick="openPhoto('Portrait – Dedaunan di bukit','foto/bukit.jpg')"><div class="card-icon"><i class="fa fa-person"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">dedaunan di bukit</div></div></div>
+        <div class="media-card pc mc-2 reveal" onclick="openPhoto('Portrait – Pantai - 1','foto/pantai1.jpg')"><div class="card-icon"><i class="fa fa-person"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai - 1</div></div></div>
+        <div class="media-card pc mc-2 reveal" onclick="openPhoto('Portrait – Pantai - 2','foto/pantai2.jpg')"><div class="card-icon"><i class="fa fa-person"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai - 2</div></div></div>
+        <div class="media-card pc mc-2 reveal" onclick="openPhoto('Portrait – Pantai - 3','foto/pantai3.jpg')"><div class="card-icon"><i class="fa fa-person"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai - 3</div></div></div>
+        <div class="media-card pc mc-2 reveal" onclick="openPhoto('Portrait – Pantai - 4','foto/pantai4.jpg')"><div class="card-icon"><i class="fa fa-person"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai - 4</div></div></div>
+        <div class="media-card pc mc-2 reveal" onclick="openPhoto('Portrait – Pantai - 5','foto/pantai5.jpg')"><div class="card-icon"><i class="fa fa-person"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai - 5</div></div></div>
+      </div >
+    </div >
+  </div>
+  <section class="social-sec"><p class="social-title">Find Me On</p><div class="social-icons"><a href="https://www.facebook.com/ahmad.zaky.318" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/kyaz.cuby" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://www.linkedin.com/in/ahmad-zaky-716570389" target="_blank"><i class="fab fa-linkedin-in"></i></a><a href="https://www.tiktok.com/@az_ind67" target="_blank"><i class="fab fa-tiktok"></i></a></div></section>
+  <footer><p>© 2026 <span>Portofolio</span> – Ahmad Zaky. All rights reserved.</p></footer>
+</div>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 id="modal-title" style="margin-bottom:14px;font-size:1rem;font-weight:700"></h3>
+    <div class="modal-vid" id="modal-vb"><i class="fa fa-play-circle"></i><p style="font-size:.82rem;color:#9ca3af">Isi ytId dengan ID YouTube kamu</p></div>
+    <div class="modal-photo" id="modal-pb" style="display:none"><img id="modal-pi" src="" alt=""></div>
+  </div>
+</div>
+
+<!-- CONTACT POPUP -->
+<div id="cp">
+  <div class="cp-box">
+    <button class="cp-close" onclick="closeCP()">✕</button>
+    <div class="cp-head">
+      <div class="cp-icon"><i class="fa fa-paper-plane"></i></div>
+      <div class="cp-title">Hubungi Saya</div>
+      <div class="cp-sub">Pilih platform untuk terhubung dengan saya</div>
+    </div>
+    <div class="cp-list">
+      <a href="mailto:zaky.ahmad849@gmail.com" class="cp-card c-em"><div class="cp-cicon"><i class="fa fa-envelope"></i></div><div class="cp-info"><div class="cp-name">Email</div><div class="cp-handle">zaky.ahmad849@gmail.com</div></div><i class="fa fa-arrow-up-right-from-square cp-arr"></i></a>
+      <a href="https://www.instagram.com/kyaz.cuby" target="_blank" class="cp-card c-ig"><div class="cp-cicon"><i class="fab fa-instagram"></i></div><div class="cp-info"><div class="cp-name">Instagram</div><div class="cp-handle">@kyaz.cuby</div></div><i class="fa fa-arrow-up-right-from-square cp-arr"></i></a>
+      <a href="https://www.tiktok.com/@az_ind67" target="_blank" class="cp-card c-tt"><div class="cp-cicon"><i class="fab fa-tiktok"></i></div><div class="cp-info"><div class="cp-name">TikTok</div><div class="cp-handle">@az_ind67</div></div><i class="fa fa-arrow-up-right-from-square cp-arr"></i></a>
+      <a href="https://www.linkedin.com/in/ahmad-zaky-716570389" target="_blank" class="cp-card c-li"><div class="cp-cicon"><i class="fab fa-linkedin-in"></i></div><div class="cp-info"><div class="cp-name">LinkedIn</div><div class="cp-handle">Ahmad Zaky</div></div><i class="fa fa-arrow-up-right-from-square cp-arr"></i></a>
+      <a href="https://www.facebook.com/ahmad.zaky.318" target="_blank" class="cp-card c-fb"><div class="cp-cicon"><i class="fab fa-facebook-f"></i></div><div class="cp-info"><div class="cp-name">Facebook</div><div class="cp-handle">Ahmad Zaky</div></div><i class="fa fa-arrow-up-right-from-square cp-arr"></i></a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══ STATE ══ */
+const PO={home:0,video:1,photo:2};
+let CUR='home', BUSY=false;
+const OV=document.getElementById('tov');
+
+/* ══ TRANSITION FX ══ */
+function mk(t,c,s){const e=document.createElement(t);e.className=c;if(s)e.style.cssText=s;return e;}
+
+function spRipple(x,y,sz,dl=0){
+  const r=mk('div','rw',`width:${sz}px;height:${sz}px;left:${x-sz/2}px;top:${y-sz/2}px;animation-delay:${dl}s`);
+  OV.appendChild(r); requestAnimationFrame(()=>r.classList.add('go'));
+  setTimeout(()=>r.remove(),(950+dl*1000));
+}
+function spRing(x,y,sz,cls,dl=0){
+  const r=mk('div',cls,`width:${sz}px;height:${sz}px;left:${x-sz/2}px;top:${y-sz/2}px;animation-delay:${dl}s`);
+  OV.appendChild(r); requestAnimationFrame(()=>r.classList.add('go'));
+  setTimeout(()=>r.remove(),(1200+dl*1000));
+}
+function spParticles(cx,cy,n=16){
+  const g=['✦','✕','◆','▲','●','✧','+','▪','○','×','★','◇'];
+  for(let i=0;i<n;i++){
+    const ang=(i/n)*360+Math.random()*22;
+    const dist=50+Math.random()*200;
+    const tx=Math.cos(ang*Math.PI/180)*dist;
+    const ty=Math.sin(ang*Math.PI/180)*dist-40;
+    const dl=i*0.025+Math.random()*0.04;
+    const dur=0.45+Math.random()*0.4;
+    const sz=7+Math.random()*18;
+    const cols=['#2563eb','#60a5fa','#93c5fd','#3b82f6','#1d4ed8'];
+    const col=cols[Math.floor(Math.random()*cols.length)];
+    const p=mk('div','tp',`left:${cx}px;top:${cy}px;font-size:${sz}px;color:${col};--tx:${tx}px;--ty:${ty}px;--tr:${Math.random()*450}deg;--ts:${.25+Math.random()};--d:${dur}s;--dl:${dl}s`);
+    p.textContent=g[i%g.length]; OV.appendChild(p);
+    setTimeout(()=>p.remove(),(dur+dl)*1000+300);
+  }
+}
+function spSlashes(cx,cy,n=8){
+  for(let i=0;i<n;i++){
+    const ang=-45+(i/(n-1))*90+Math.random()*14;
+    const len=50+Math.random()*170;
+    const ox=cx-100+Math.random()*200, oy=cy-50+Math.random()*100;
+    const dl=i*0.038;
+    const s=mk('div','sl',`left:${ox}px;top:${oy}px;width:${len}px;--ra:${ang}deg;--tx:${(Math.random()>.5?1:-1)*(10+Math.random()*30)}px;--d:${.34+Math.random()*.22}s;--dl:${dl}s`);
+    OV.appendChild(s); setTimeout(()=>s.remove(),(0.7+dl)*1000);
+  }
+}
+function spDiamonds(cx,cy,n=10){
+  for(let i=0;i<n;i++){
+    const ang=(i/n)*360+Math.random()*15;
+    const dist=35+Math.random()*120;
+    const tx=Math.cos(ang*Math.PI/180)*dist, ty=Math.sin(ang*Math.PI/180)*dist;
+    const dl=i*0.034, sz=4+Math.random()*13;
+    const cols=['#3b82f6','#93c5fd','#60a5fa','#2563eb','#dbeafe'];
+    const col=cols[i%cols.length];
+    const d=mk('div','dm',`left:${cx}px;top:${cy}px;width:${sz}px;height:${sz}px;background:${col};--tx:${tx}px;--ty:${ty}px;--dr:${Math.random()*220}deg;--d:${.48+Math.random()*.28}s;--dl:${dl}s`);
+    OV.appendChild(d); setTimeout(()=>d.remove(),(0.95+dl)*1000);
+  }
+}
+function spSweep(dl=0){
+  const s=mk('div','sb',`--d:.72s;--dl:${dl}s`);
+  OV.appendChild(s); setTimeout(()=>s.remove(),(0.85+dl)*1000);
+}
+function spWave(y,dl=0){
+  const w=mk('div','wv',`top:${y}px;--dl:${dl}s`);
+  const inner=mk('div','wv-i','');
+  w.appendChild(inner); OV.appendChild(w);
+  setTimeout(()=>w.remove(),(0.8+dl)*1000);
+}
+function spBurst(cx,cy,n=7){
+  for(let i=0;i<n;i++){
+    const ang=(i/n)*360, dist=25+Math.random()*90;
+    const bx=cx+Math.cos(ang*Math.PI/180)*dist;
+    const by=cy+Math.sin(ang*Math.PI/180)*dist;
+    const sz=15+Math.random()*50, dl=i*0.045;
+    const b=mk('div','bst',`left:${bx-sz/2}px;top:${by-sz/2}px;width:${sz}px;height:${sz}px;background:radial-gradient(circle,rgba(37,99,235,.28),transparent 70%);--d:${.48+Math.random()*.22}s;--dl:${dl}s;--bs:${1.4+Math.random()*0.8}`);
+    OV.appendChild(b); setTimeout(()=>b.remove(),(0.85+dl)*1000);
+  }
+}
+function spShooting(cx,cy,n=5){
+  for(let i=0;i<n;i++){
+    const ang=-30+Math.random()*60;
+    const len=80+Math.random()*160;
+    const ox=cx-150+Math.random()*300, oy=cy-80+Math.random()*160;
+    const dl=i*0.06;
+    const s=mk('div','shs',`left:${ox}px;top:${oy}px;width:${len}px;--ra:${ang}deg;--tx:${(Math.random()>.5?1:-1)*(100+Math.random()*150)}px;--d:${.45+Math.random()*.2}s;--dl:${dl}s`);
+    OV.appendChild(s); setTimeout(()=>s.remove(),(0.75+dl)*1000);
+  }
+}
+function spFlash(cx,cy,n=4){
+  for(let i=0;i<n;i++){
+    const ang=(i/n)*360, dist=20+Math.random()*60;
+    const fx=cx+Math.cos(ang*Math.PI/180)*dist;
+    const fy=cy+Math.sin(ang*Math.PI/180)*dist;
+    const sz=30+Math.random()*50, dl=i*0.06;
+    const f=mk('div','fls',`left:${fx-sz/2}px;top:${fy-sz/2}px;width:${sz}px;height:${sz}px;--d:.32s;--dl:${dl}s`);
+    OV.appendChild(f); setTimeout(()=>f.remove(),(0.45+dl)*1000);
+  }
+}
+
+function fireFX(style){
+  const W=window.innerWidth, H=window.innerHeight, cx=W/2, cy=H/2;
+  if(style==='slide-up'){
+    const bx=cx, by=H*.82;
+    spRipple(bx,by,360); spRipple(bx,by,220,.09); spRipple(cx,H*.5,180,.18);
+    spRing(bx,by,290,'rr',.06); spRing(bx,by,410,'rr2',.12); spRing(bx,by,520,'rr3',.19);
+    spParticles(bx,H*.78,22); spSlashes(bx,H*.6,9); spDiamonds(bx,H*.75,12);
+    spBurst(bx,by,8); spShooting(bx,H*.65,6); spFlash(bx,by,5);
+    spSweep(.04); spSweep(.16); spSweep(.26);
+    spWave(H*.25,.03); spWave(H*.55,.1); spWave(H*.75,.17);
+  } else if(style==='slide-down'){
+    const bx=cx, by=H*.18;
+    spRipple(bx,by,340); spRipple(bx,by,200,.09); spRipple(cx,H*.5,160,.17);
+    spRing(bx,by,270,'rr',.07); spRing(bx,by,380,'rr2',.13); spRing(bx,by,480,'rr3',.2);
+    spParticles(bx,H*.22,20); spSlashes(bx,H*.38,8); spDiamonds(bx,H*.22,10);
+    spBurst(bx,by,7); spShooting(bx,H*.35,5); spFlash(bx,by,4);
+    spSweep(.04); spSweep(.15); spWave(H*.4,.05); spWave(H*.65,.12);
+  } else if(style==='swipe-left'){
+    const bx=W*.88;
+    spRipple(bx,cy,310); spRipple(bx,cy,190,.09); spRipple(W*.5,cy,150,.18);
+    spRing(bx,cy,250,'rr',.08); spRing(bx,cy,350,'rr2',.15); spRing(bx,cy,440,'rr3',.22);
+    spParticles(bx,cy,18); spSlashes(W*.72,cy,8); spDiamonds(bx,cy,9);
+    spBurst(bx,cy,6); spShooting(W*.7,cy,5); spFlash(bx,cy,4);
+    spSweep(.02); spSweep(.14); spSweep(.24);
+    spWave(cy*.5,.06); spWave(cy,.12); spWave(cy*1.5,.18);
+  } else if(style==='swipe-right'){
+    const bx=W*.12;
+    spRipple(bx,cy,310); spRipple(bx,cy,190,.09); spRipple(W*.5,cy,150,.18);
+    spRing(bx,cy,250,'rr',.08); spRing(bx,cy,350,'rr2',.15); spRing(bx,cy,440,'rr3',.22);
+    spParticles(bx,cy,18); spSlashes(W*.28,cy,8); spDiamonds(bx,cy,9);
+    spBurst(bx,cy,6); spShooting(W*.3,cy,5); spFlash(bx,cy,4);
+    spSweep(.03); spSweep(.15); spWave(cy*.5,.07); spWave(cy,.13);
+  } else {
+    spRipple(cx,cy,270); spRipple(cx,cy,160,.09);
+    spRing(cx,cy,220,'rr',.07); spRing(cx,cy,320,'rr2',.14); spRing(cx,cy,400,'rr3',.21);
+    spParticles(cx,cy,14); spDiamonds(cx,cy,7); spBurst(cx,cy,5); spFlash(cx,cy,3);
+    spSweep(.05); spWave(cy,.08);
+  }
+}
+
+/* ══ STYLE PICKER ══ */
+function pickStyle(f,t){
+  const fi=PO[f]??0, ti=PO[t]??0;
+  if(fi===0&&ti>0) return 'slide-up';
+  if(fi>0&&ti===0) return 'slide-down';
+  if(fi<ti)        return 'swipe-left';
+  if(fi>ti)        return 'swipe-right';
+  return 'fade';
+}
+
+/* ══ CORE NAVIGATE ══ */
+function goTo(name, after){
+  if(BUSY) return;
+  if(name===CUR){
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(after) after();
+    return;
+  }
+  BUSY=true;
+  const style=pickStyle(CUR,name);
+  fireFX(style);
+  const oc=style+'-out', ic=style+'-in', OD=400, ID=700;
+  const oldEl=document.getElementById('page-'+CUR);
+  oldEl.classList.add('anim-out',oc);
+  setTimeout(()=>{
+    oldEl.classList.remove('active','anim-out',oc);
+    window.scrollTo(0,0);
+    const newEl=document.getElementById('page-'+name);
+    newEl.classList.add('active','anim-in',ic);
+    CUR=name;
+    setNav(name);
+    revealAll();
+    if(after) after();
+    setTimeout(()=>{newEl.classList.remove('anim-in',ic);BUSY=false;},ID+80);
+  },OD);
+}
+
+/* ══ NAV ACTIVE ══ */
+function setNav(page){
+  ['nav-home','nav-about','nav-video','nav-photo'].forEach(id=>{
+    document.getElementById(id)?.classList.remove('active');
+  });
+  if(page==='home')  document.getElementById('nav-home')?.classList.add('active');
+  if(page==='about') document.getElementById('nav-about')?.classList.add('active');
+  if(page==='video') document.getElementById('nav-video')?.classList.add('active');
+  if(page==='photo') document.getElementById('nav-photo')?.classList.add('active');
+}
+
+function updateNavOnScroll(){
+  if(CUR!=='home') return;
+  const about=document.getElementById('about');
+  if(!about) return;
+  const r=about.getBoundingClientRect();
+  if(r.top<window.innerHeight*0.6&&r.bottom>0) setNav('about');
+  else setNav('home');
+}
+
+/* ══ NAV FUNCTIONS ══ */
+function navHome(){
+  if(CUR==='home'){
+    window.scrollTo({top:0,behavior:'smooth'});
+    setTimeout(()=>setNav('home'),350);
+  } else {
+    goTo('home');
+  }
+}
+function navAbout(){
+  if(CUR==='home'){
+    document.getElementById('about')?.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(()=>setNav('about'),400);
+  } else {
+    goTo('home',()=>{
+      setTimeout(()=>{
+        document.getElementById('about')?.scrollIntoView({behavior:'smooth',block:'start'});
+        setTimeout(()=>setNav('about'),400);
+      },200);
+    });
+  }
+}
+function goVideo(){ goTo('video'); }
+function goPhoto(){ goTo('photo'); }
+
+/* ══ SKILL TAB SWITCH with height animation ══ */
+function switchExp(panel, btn){
+  const wrap=document.getElementById('exp-wrap');
+  const panels=wrap.querySelectorAll('.exp-panel');
+  const nextPanel=document.getElementById('exp-'+panel);
+
+  // Find currently active
+  const active=wrap.querySelector('.exp-panel.active');
+  if(active===nextPanel) return;
+
+  // Lock wrap height to current
+  wrap.style.height=active.offsetHeight+'px';
+
+  // Tab styling
+  document.querySelectorAll('.exp-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Animate out old
+  active.classList.add('leaving');
+  active.classList.remove('active');
+
+  // Small delay then bring in new
+  setTimeout(()=>{
+    active.classList.remove('leaving');
+    nextPanel.classList.add('active');
+
+    // Animate wrap height to new panel height
+    requestAnimationFrame(()=>{
+      wrap.style.height=nextPanel.offsetHeight+'px';
+    });
+
+    // After transition clear fixed height so it's responsive
+    setTimeout(()=>{
+      wrap.style.height='';
+    },460);
+  },80);
+}
+
+/* ══ MODALS ══ */
+/* 
+   ┌─ PANDUAN YOUTUBE VIDEO ID ─────────────────────────────────────────┐
+   │ Format: https://www.youtube.com/watch?v=XXXXXXXXXXXXXX            │
+   │ ID yang diambil: XXXXXXXXXXXXXX (bagian setelah v=)               │
+   │ Contoh: Video dengan URL https://www.youtube.com/watch?v=dQw4w9WgXcQ
+   │ Gunakan ID: dQw4w9WgXcQ                                           │
+   │                                                                     │
+   │ Ganti placeholder di onclick seperti:                             │
+   │ openVid('Judul Video', 'dQw4w9WgXcQ')                             │
+   └─────────────────────────────────────────────────────────────────────┘
+*/
+function openVid(title, ytId) {
+  document.getElementById('modal-title').textContent = title;
+  const vb = document.getElementById('modal-vb');
+  const pb = document.getElementById('modal-pb');
+  
+  pb.style.display = 'none';
+  vb.style.display = 'flex';
+  vb.style.aspectRatio = '16/9';
+  
+  // Validasi apakah ytId valid (bukan placeholder atau kosong)
+  if (!ytId || ytId.startsWith('YT_') || ytId === '') {
+    vb.innerHTML = `
+      <i class="fa fa-exclamation-circle" style="color:var(--blue-l);margin-bottom:12px"></i>
+      <p style="font-size:.85rem;margin-bottom:8px"><strong>${title}</strong></p>
+      <small style="color:#9ca3af;font-size:.74rem;line-height:1.6">
+        ⚠️ YouTube Video ID belum diisi<br>
+        Ganti <code style="background:#f5f9ff;padding:2px 6px;border-radius:4px">'YT_...'</code> 
+        dengan YouTube video ID Anda di file HTML
+      </small>
+    `;
+  } else {
+    // Log untuk debugging
+    console.log(`🎬 Loading Video: ${title} | ID: ${ytId}`);
+    
+    let iframeHtml = '';
+    
+    // Cek apakah menggunakan Google Drive
+    if (ytId.startsWith('drive:')) {
+      const driveId = ytId.replace('drive:', '');
+      // Tambahkan &rm=minimal untuk quality optimal dan autoplay
+      const driveUrl = `https://drive.google.com/file/d/${driveId}/preview?resourcekey&rm=minimal`;
+      console.log(`📁 Google Drive URL: ${driveUrl}`);
+      
+      iframeHtml = `
+        <iframe 
+          src="${driveUrl}" 
+          width="100%" 
+          height="100%" 
+          frameborder="0" 
+          allow="autoplay;fullscreen"
+          allowfullscreen
+          loading="lazy"
+          title="${title}"
+          style="border-radius:12px;background:#000"
+        ></iframe>
+      `;
+    } 
+    // Cek apakah menggunakan YouTube
+    else if (ytId.length === 11 || ytId.match(/^[a-zA-Z0-9_-]{11}$/)) {
+      // Parameter untuk autoplay, quality hints, dan kontrol fullscreen
+      const params = new URLSearchParams({
+        'autoplay': '1',           // Autoplay saat dimuat
+        'start': '0',              // Mulai dari awal
+        'fs': '1',                 // Fullscreen button
+        'modestbranding': '1',     // Minimal branding
+        'rel': '0',                // No recommended videos
+        'controls': '1',           // Player controls
+        'iv_load_policy': '3'      // Hide annotations
+      });
+      
+      const embedUrl = `https://www.youtube.com/embed/${ytId}?${params.toString()}`;
+      console.log(`📺 YouTube Embed URL: ${embedUrl}`);
+      console.log(`📺 Autoplay: ON | Quality: Auto-select (1080p/720p)`);
+      
+      iframeHtml = `
+        <iframe 
+          width="100%" 
+          height="100%" 
+          src="${embedUrl}" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen
+          loading="lazy"
+          title="${title}"
+          style="border-radius:12px;background:#000"
+        ></iframe>
+      `;
+    }
+    // Cek apakah menggunakan file lokal (.mp4, .mov, dll)
+    else if (ytId.includes('.mp4') || ytId.includes('.mov') || ytId.includes('.webm') || ytId.includes('.avi')) {
+      console.log(`🎞️ Local Video: ${ytId}`);
+      console.log(`🎞️ Autoplay: ON | Quality: Source quality`);
+      
+      iframeHtml = `
+        <video 
+          style="width:100%;height:100%;border-radius:12px;background:#000;object-fit:contain"
+          controls
+          autoplay
+          preload="metadata"
+          playsinline
+          crossorigin="anonymous"
+        >
+          <source src="${ytId}" type="video/mp4">
+          <p style="color:#9ca3af;text-align:center;padding:20px">
+            Browser Anda tidak support HTML5 video. Gunakan browser modern (Chrome, Firefox, Safari).
+          </p>
+        </video>
+      `;
+    }
+    // Default: tampilkan pesan error
+    else {
+      console.error(`❌ Format ID tidak dikenali: ${ytId}`);
+      iframeHtml = `
+        <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;height:100%;color:#9ca3af;text-align:center;padding:20px">
+          <i class="fa fa-exclamation-triangle" style="font-size:2rem;margin-bottom:12px"></i>
+          <p style="font-size:.85rem;margin-bottom:8px"><strong>${title}</strong></p>
+          <small style="font-size:.74rem">
+            Format tidak dikenali<br>
+            Gunakan: 'drive:ID' | 'YouTube_ID' | 'file.mp4'
+          </small>
+        </div>
+      `;
+    }
+    
+    vb.innerHTML = iframeHtml;
+    
+    // Trigger autoplay jika semua sudah dimuat
+    setTimeout(() => {
+      const videoElement = vb.querySelector('video');
+      if (videoElement) {
+        videoElement.play().catch(err => {
+          console.warn('⚠️ Autoplay blocked:', err);
+        });
+      }
+    }, 500);
+  }
+  
+  const modal = document.getElementById('modal');
+  modal.classList.remove('closing');
+  modal.classList.add('active');
+}
+
+
+function openPhoto(title,src){
+  document.getElementById('modal-title').textContent=title;
+  const vb=document.getElementById('modal-vb'), pb=document.getElementById('modal-pb');
+  const modalBox=document.querySelector('.modal-box');
+  modalBox.classList.add('photo-preview');
+  vb.style.display='none';
+  pb.style.display='inline-flex';
+  pb.style.justifyContent='center';
+  pb.style.alignItems='center';
+  pb.style.width='auto';
+  pb.style.height='auto';
+  pb.style.maxWidth='90vw';
+  pb.style.maxHeight='76vh';
+  pb.style.aspectRatio='';
+  const img=document.getElementById('modal-pi');
+  img.style.maxWidth='90vw';
+  img.style.maxHeight='76vh';
+  img.style.width='auto';
+  img.style.height='auto';
+  img.style.objectFit='contain';
+  if(src){
+    img.onload=()=>{pb.style.removeProperty('aspect-ratio');};
+    img.style.display='block';
+    img.src=src;
+  } else {pb.innerHTML=`<p style="color:#9ca3af;padding:20px;font-size:.82rem">Isi src dengan path foto kamu</p>`;}
+  const modal = document.getElementById('modal');
+  modal.classList.remove('closing');
+  modal.classList.add('active');
+}
+
+function insertCardThumbnail(card, element){
+  element.classList.add('card-thumb');
+  card.insertBefore(element, card.firstChild);
+  card.classList.add('thumb-loaded');
+}
+
+function generateThumbnailUrl(videoId) {
+  // Generate thumbnail URL berdasarkan format video ID
+  if (videoId.startsWith('drive:')) {
+    const driveId = videoId.replace('drive:', '');
+    // Google Drive thumbnail dengan size 400px
+    return `https://drive.google.com/thumbnail?id=${driveId}&sz=w400`;
+  } 
+  else if (videoId.length === 11 && videoId.match(/^[a-zA-Z0-9_-]{11}$/)) {
+    // YouTube thumbnail (high quality default)
+    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  }
+  return null;
+}
+
+function loadVideoThumbnails() {
+  // Get all media cards dengan class yang mengandung 'mc-' (video cards)
+  const videoCards = document.querySelectorAll('.grid-vid .media-card');
+  
+  videoCards.forEach(card => {
+    // Skip jika sudah ada thumbnail
+    if (card.classList.contains('thumb-loaded')) return;
+    
+    // Extract video ID dari onclick attribute
+    const onclickAttr = card.getAttribute('onclick');
+    if (!onclickAttr) return;
+    
+    // Parse onclick: openVid('Title', 'ID')
+    const match = onclickAttr.match(/openVid\s*\(\s*'[^']*'\s*,\s*'([^']*)'\s*\)/);
+    if (!match) return;
+    
+    const videoId = match[1];
+    const thumbnailUrl = generateThumbnailUrl(videoId);
+    
+    if (!thumbnailUrl) {
+      console.warn(`❌ Thumbnail URL tidak bisa generated untuk: ${videoId}`);
+      return;
+    }
+    
+    // Create img element
+    const img = document.createElement('img');
+    img.src = thumbnailUrl;
+    img.alt = 'Video Thumbnail';
+    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000';
+    img.onload = () => {
+      // Img loaded successfully
+      console.log(`✅ Thumbnail loaded: ${videoId}`);
+    };
+    img.onerror = () => {
+      // Fallback jika thumbnail gagal load
+      console.warn(`⚠️ Thumbnail gagal load untuk: ${videoId}`);
+      img.style.display = 'none';
+    };
+    
+    // Insert thumbnail ke dalam card
+    insertCardThumbnail(card, img);
+  });
+}
+
+// Auto-load thumbnails saat DOM ready
+document.addEventListener('DOMContentLoaded', loadVideoThumbnails);
+// Fallback jika DOMContentLoaded sudah terjadi
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadVideoThumbnails);
+} else {
+  loadVideoThumbnails();
+}
+
+function captureVideoThumbnail(src, callback){
+  const video=document.createElement('video');
+  video.muted=true;
+  video.playsInline=true;
+  video.preload='metadata';
+  video.style.position='absolute';
+  video.style.opacity='0';
+  video.style.pointerEvents='none';
+  video.style.width='1px';
+  video.style.height='1px';
+  document.body.appendChild(video);
+  const cleanup=()=>{video.pause();video.removeAttribute('src');video.load();video.remove();};
+  const fail=()=>{cleanup();callback(null);};
+  video.addEventListener('loadedmetadata',()=>{
+    const seekTime = Math.min(2, Math.max(0.5, video.duration * 0.15 || 0));
+    const onSeeked=()=>{
+      try{
+        const canvas=document.createElement('canvas');
+        const targetW=480;
+        const targetH=270;
+        canvas.width=targetW;
+        canvas.height=targetH;
+        const ctx=canvas.getContext('2d');
+        const vw=video.videoWidth;
+        const vh=video.videoHeight;
+        if (!vw || !vh){fail();return;}
+        const targetRatio=targetW/targetH;
+        const videoRatio=vw/vh;
+        let sx=0, sy=0, sw=vw, sh=vh;
+        if (videoRatio > targetRatio){
+          sw=Math.round(vh * targetRatio);
+          sx=Math.round((vw-sw)/2);
+        } else {
+          sh=Math.round(vw / targetRatio);
+          sy=Math.round((vh-sh)/2);
+        }
+        ctx.drawImage(video, sx, sy, sw, sh, 0, 0, targetW, targetH);
+        const dataUrl=canvas.toDataURL('image/jpeg',0.85);
+        cleanup();
+        callback(dataUrl);
+      } catch (err){fail();}
+    };
+    video.addEventListener('seeked', onSeeked, {once:true});
+    video.currentTime=seekTime;
+  }, {once:true});
+  video.addEventListener('error', fail, {once:true});
+  video.src=src;
+}
+
+function createVideoPreview(card, src){
+  const video=document.createElement('video');
+  video.src=src;
+  video.muted=true;
+  video.playsInline=true;
+  video.preload='metadata';
+  video.style.opacity='0';
+  video.style.pointerEvents='none';
+  video.addEventListener('loadeddata',()=>{video.style.opacity='1';});
+  insertCardThumbnail(card, video);
+}
+
+function setCardThumbnail(card, src, type){
+  if (!src || card.classList.contains('thumb-loaded')) return;
+  if (type==='photo'){
+    const img=document.createElement('img');
+    img.src=src;
+    img.alt='';
+    img.onload=()=>insertCardThumbnail(card, img);
+    img.onerror=()=>img.remove();
+    return;
+  }
+  const jpgSrc=src.replace(/\.mp4$/i,'.jpg');
+  const img=document.createElement('img');
+  img.src=jpgSrc;
+  img.alt='';
+  img.onload=()=>insertCardThumbnail(card, img);
+  img.onerror=()=>{
+    captureVideoThumbnail(src,dataUrl=>{
+      if (dataUrl){
+        const thumb=document.createElement('img');
+        thumb.src=dataUrl;
+        thumb.alt='';
+        insertCardThumbnail(card, thumb);
+      } else {
+        createVideoPreview(card, src);
+      }
+    });
+  };
+}
+
+function initCardThumbnails(){
+  document.querySelectorAll('.media-card').forEach(card=>{
+    const onclick=card.getAttribute('onclick')||'';
+    let match=onclick.match(/openPhoto\('(?:[^']*)','([^']*)'\)/);
+    if (match){
+      setCardThumbnail(card, match[1], 'photo');
+      return;
+    }
+    match=onclick.match(/openVid\('(?:[^']*)','([^']*)'\)/);
+    if (match){
+      setCardThumbnail(card, match[1], 'video');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initCardThumbnails);
+
+function closeModal(){
+  const modal = document.getElementById('modal');
+  modal.classList.add('closing');
+  setTimeout(() => {
+    modal.classList.remove('active', 'closing');
+    const modalBox=document.querySelector('.modal-box');
+    modalBox.classList.remove('photo-preview');
+    document.getElementById('modal-vb').innerHTML='<i class="fa fa-play-circle"></i>';
+    document.getElementById('modal-vb').style.display='flex';
+    document.getElementById('modal-pb').style.display='none';
+  }, 500); // Match the longest transition duration
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+/* ══ CONTACT POPUP ══ */
+function openCP(){
+  const pop=document.getElementById('cp');
+  pop.querySelectorAll('.cp-card').forEach(c=>c.classList.remove('show'));
+  pop.style.display='flex';
+  requestAnimationFrame(()=>{
+    pop.classList.add('open');
+    pop.querySelectorAll('.cp-card').forEach((c,i)=>setTimeout(()=>c.classList.add('show'),180+i*72));
+  });
+}
+function closeCP(){
+  const pop=document.getElementById('cp');
+  pop.classList.remove('open');
+  setTimeout(()=>{pop.style.display='none';},380);
+}
+document.getElementById('cp').addEventListener('click',function(e){if(e.target===this)closeCP();});
+
+/* ══ REVEAL ══ */
+function revealAll(){
+  setTimeout(()=>{
+    document.querySelectorAll('.page.active .reveal').forEach(el=>{
+      if(el.getBoundingClientRect().top<window.innerHeight+80) el.classList.add('visible');
+    });
+  },50);
+  setTimeout(()=>{
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach((e,i)=>{if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*60);});
+    },{threshold:.07});
+    document.querySelectorAll('.page.active .reveal:not(.visible)').forEach(el=>obs.observe(el));
+  },90);
+}
+
+window.addEventListener('scroll',()=>{revealAll();updateNavOnScroll();});
+
+/* ══ INIT ══ */
+(function(){
+  document.getElementById('page-home').classList.add('active');
+  setNav('home');
+  revealAll();
+
+  /* Init panel wrap height */
+  const wrap=document.getElementById('exp-wrap');
+  const active=wrap.querySelector('.exp-panel.active');
+  if(active) wrap.style.height='';
+})();
+</script>
+</body>
+</html>
