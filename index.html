@@ -8,7 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-
+/* ═══════════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════════ */
 :root{
   --blue:#2563eb;--blue-l:#60a5fa;--blue-p:#dbeafe;
   --bg:#f0f6ff;--dark:#111827;--gray:#6b7280;
@@ -19,6 +21,9 @@ html{scroll-behavior:smooth;}
 body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;}
 img,video{max-width:100%;}
 
+/* ═══════════════════════════════════════════════
+   BG CANVAS
+═══════════════════════════════════════════════ */
 .bgc{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .bgc-dots{position:absolute;width:100%;height:100%;background-image:radial-gradient(circle,rgba(37,99,235,.1) 1.5px,transparent 1.5px);background-size:28px 28px;}
 .bgb{position:absolute;border-radius:50%;filter:blur(65px);opacity:.13;will-change:transform;}
@@ -49,6 +54,9 @@ img,video{max-width:100%;}
 @keyframes fC{0%,100%{transform:translate(0,0) rotate(0deg);}33%{transform:translate(6px,-12px) rotate(8deg);}66%{transform:translate(-5px,8px) rotate(-5deg);}}
 @keyframes dW{0%,100%{transform:rotate(var(--rot,0deg)) scaleX(1);}50%{transform:rotate(var(--rot,0deg)) scaleX(.7);}}
 
+/* ═══════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:999;
   background:rgba(255,255,255,.93);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
@@ -73,11 +81,10 @@ nav{
   font-family:inherit;transition:transform .2s,box-shadow .2s;white-space:nowrap;
 }
 .btn-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.35);}
-.nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--dark);position:relative;width:32px;height:32px;transition:transform .3s cubic-bezier(.22,1,.36,1);}
-.nav-ham i{font-size:1.4rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:opacity .2s ease, transform .3s cubic-bezier(.22,1,.36,1);opacity:1;}
-.nav-ham.animating i{opacity:0;transform:translate(-50%,-50%) rotate(-90deg);}
-.nav-ham:hover{transform:scale(1.08);}
+.nav-ham{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--dark);}
+.nav-ham i{font-size:1.4rem;}
 
+/* MOBILE DRAWER */
 .nav-drawer{
   display:none;
   position:fixed;top:var(--nav-h);left:0;right:0;z-index:998;
@@ -94,16 +101,7 @@ nav{
   display:block;padding:12px 16px;border-radius:12px;font-size:.95rem;font-weight:500;
   color:var(--dark);text-decoration:none;background:none;border:none;cursor:pointer;
   font-family:inherit;width:100%;text-align:left;transition:background .15s,color .15s;
-  opacity:0;transform:translateX(-16px);will-change:opacity,transform;
 }
-.nav-drawer.open a,.nav-drawer.open .nav-btn{
-  opacity:1;transform:none;animation:drawerItemSlide .35s cubic-bezier(.22,1,.36,1) forwards;
-}
-.nav-drawer li:nth-child(1) a,.nav-drawer li:nth-child(1) .nav-btn{animation-delay:0s;}
-.nav-drawer li:nth-child(2) a,.nav-drawer li:nth-child(2) .nav-btn{animation-delay:.06s;}
-.nav-drawer li:nth-child(3) a,.nav-drawer li:nth-child(3) .nav-btn{animation-delay:.12s;}
-.nav-drawer li:nth-child(4) a,.nav-drawer li:nth-child(4) .nav-btn{animation-delay:.18s;}
-@keyframes drawerItemSlide{from{opacity:0;transform:translateX(-16px);}to{opacity:1;transform:none;}}
 .nav-drawer a:hover,.nav-drawer .nav-btn:hover,
 .nav-drawer a.active,.nav-drawer .nav-btn.active{background:var(--blue-p);color:var(--blue);}
 .nav-drawer .dr-cta{
@@ -111,11 +109,7 @@ nav{
   padding:13px;border-radius:50px;background:var(--blue);color:#fff;
   font-size:.92rem;font-weight:600;border:none;cursor:pointer;font-family:inherit;
   width:100%;transition:opacity .2s;
-  opacity:0;transform:translateX(-16px);
-  animation:drawerCTASlide .35s cubic-bezier(.22,1,.36,1) forwards !important;
 }
-.nav-drawer.open .dr-cta{animation-delay:.24s;}
-@keyframes drawerCTASlide{from{opacity:0;transform:translateX(-16px);}to{opacity:1;transform:none;}}
 .nav-drawer .dr-cta:active{opacity:.85;}
 
 /* ═══════════════════════════════════════════════
@@ -208,7 +202,6 @@ nav{
 .hero-profile::before{content:"";position:absolute;inset:12px;border:4px solid rgba(255,255,255,.55);border-radius:50%;z-index:3;}
 .hero-profile::after{content:"";position:absolute;width:115%;height:115%;background:radial-gradient(circle,rgba(80,140,255,.16),transparent 70%);border-radius:50%;z-index:1;animation:pGlow 3s infinite ease-in-out;}
 @keyframes pGlow{0%{transform:scale(1);opacity:.7;}50%{transform:scale(1.08);opacity:1;}100%{transform:scale(1);opacity:.7;}}
-.hero-profile-ph{font-size:5rem;color:rgba(255,255,255,.45);}
 
 /* ═══════════════════════════════════════════════
    WAVE
@@ -296,30 +289,25 @@ nav{
 .grid-vid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
 .grid-photo{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
 
+/* ─── Media Cards ─── */
 .media-card{
   position:relative;border-radius:16px;overflow:hidden;cursor:pointer;
   box-shadow:0 4px 20px rgba(0,0,0,.15);
   transition:transform .28s cubic-bezier(.22,1,.36,1),box-shadow .28s;
   -webkit-transform:translateZ(0);transform:translateZ(0);
 }
-.media-card::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at center,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 55%);
-  opacity:0;
-  transition:opacity .3s ease;
-  pointer-events:none;
-}
-.media-card:hover::before,
-.media-card:active::before{
-  opacity:1;
-}
 .media-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(37,99,235,.2);}
 .vc{aspect-ratio:16/9;}.pc{aspect-ratio:4/3;}
-.card-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#1a1a2e;z-index:0;opacity:0;transition:opacity .45s ease,filter .3s;}
+
+/* Thumbnail */
+.card-thumb{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;background:#1a1a2e;z-index:0;
+  opacity:0;transition:opacity .45s ease,filter .3s;
+}
 .card-thumb.loaded{opacity:1;}
 .media-card:hover .card-thumb{filter:brightness(.68);}
+
 .card-icon,.card-ov,.card-info{z-index:2;position:relative;}
 .card-icon{font-size:2.4rem;color:rgba(255,255,255,.22);position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);transition:opacity .3s;}
 .media-card:hover .card-icon{opacity:0;}
@@ -356,233 +344,161 @@ footer{background:#fff;padding:20px 60px;text-align:center;font-size:.8rem;color
 footer span{color:var(--blue);font-weight:600;}
 
 /* ═══════════════════════════════════════════════
-   MEDIA MODAL — FIXED VERSION
+   MEDIA MODAL — FIXED
 ═══════════════════════════════════════════════ */
 .modal-ov{
-  display:none;
-  position:fixed;inset:0;z-index:9999;
+  display:none;position:fixed;inset:0;z-index:9999;
   align-items:center;justify-content:center;
-  /* FIX: safe area padding untuk notch/status bar */
-  padding:max(env(safe-area-inset-top,0px),12px) 16px max(env(safe-area-inset-bottom,0px),12px);
+  padding:20px 16px;
   background:rgba(0,0,0,0);
   backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);
-  transition:background .36s ease, backdrop-filter .36s ease;
-  /* FIX: overflow hidden agar tidak ada scroll aneh di luar modal */
-  overflow:hidden;
+  transition:background .36s ease,backdrop-filter .36s ease;
 }
 .modal-ov.active{display:flex;}
-.modal-box::before{
-  content:'';
-  position:absolute;
-  top:50%;left:50%;
-  width:calc(100% + 40px);
-  height:calc(100% + 40px);
-  transform:translate(-50%,-50%);
-  border-radius:28px;
-  background:radial-gradient(circle,rgba(37,99,235,.08) 0%,rgba(37,99,235,0.02) 45%,transparent 60%);
-  pointer-events:none;
-  z-index:1;
-  opacity:0;
-  transition:opacity .35s ease;
-}
-.modal-box > *{position:relative;z-index:2;}
-.modal-ov.show .modal-box::before{
-  opacity:1;
-}
 .modal-ov.show{background:rgba(0,0,0,.84);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);}
 
+/* ── MODAL BOX: VIDEO MODE ── */
 .modal-box{
-  background:#fff;border-radius:24px;padding:20px;
-  /* FIX: width 100% dengan max constraint */
-  width:100%;max-width:820px;
+  background:#fff;
+  border-radius:20px;
+  padding:16px 16px 16px;
+  width:100%;
+  max-width:860px;
   position:relative;
   box-shadow:0 24px 80px rgba(0,0,0,.25);
   transform:scale(.88) translateY(28px);opacity:0;
-  transition:transform .44s cubic-bezier(.22,1,.36,1), opacity .36s ease;
+  transition:transform .44s cubic-bezier(.22,1,.36,1),opacity .36s ease;
   will-change:transform,opacity;
-  /* FIX: max-height agar tidak overflow layar */
-  max-height:calc(100vh - 40px);
-  overflow:hidden;
   display:flex;flex-direction:column;
-  box-sizing:border-box;
+  /* Batasi tinggi total box agar tidak meluber di layar kecil */
+  max-height:calc(100dvh - 40px);
+  overflow:hidden;
 }
 .modal-ov.show .modal-box{transform:none;opacity:1;}
-.modal-box.photo-mode{max-width:fit-content;min-width:280px;padding:16px;border-radius:24px;}
 
-.modal-close{
-  position:absolute;top:12px;right:14px;font-size:1.35rem;
-  cursor:pointer;color:var(--gray);background:none;border:none;z-index:3;
-  transition:color .2s,transform .22s;padding:4px;
-  /* FIX: pastikan tombol close selalu bisa diklik */
+/* ── MODAL HEADER BAR (title + close) ── */
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
   flex-shrink:0;
+  margin-bottom:10px;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .3s ease .12s,transform .3s ease .12s;
 }
-.modal-close:hover{color:var(--dark);transform:rotate(90deg);}
-
+.modal-ov.show .modal-header{opacity:1;transform:none;}
 .modal-title-el{
-  font-size:1rem;font-weight:700;
-  padding-right:36px;
-  margin-bottom:12px;
-  flex-shrink:0;
-  opacity:0;transform:translateY(8px);
-  transition:opacity .32s ease .14s,transform .32s ease .14s;
+  font-size:.95rem;font-weight:700;
+  flex:1;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  padding-right:4px;
 }
-.modal-ov.show .modal-title-el{opacity:1;transform:none;}
+/* Close button — sekarang di dalam header, bukan absolute */
+.modal-close{
+  flex-shrink:0;
+  width:32px;height:32px;
+  border-radius:50%;
+  background:rgba(0,0,0,.06);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--gray);
+  transition:background .2s,color .2s,transform .22s;
+  line-height:1;
+}
+.modal-close:hover{background:rgba(239,68,68,.12);color:#ef4444;transform:rotate(90deg);}
 
-/* FIX: Video container — gunakan flex dan biarkan grow */
+/* ── VIDEO WRAPPER ── */
 .modal-vid-wrap{
   position:relative;
   width:100%;
-  /* FIX: flex-grow agar mengisi sisa ruang, min-height 0 agar bisa shrink */
-  flex:1 1 auto;
-  min-height:0;
-  border-radius:12px;
+  /* 
+    KUNCI FIX: pakai aspect-ratio 16/9 tapi max-height
+    dihitung dari sisa ruang setelah header (≈52px) + padding modal box (32px)
+    Ini memastikan kontrol bawah iframe tidak terpotong.
+    Nilai 88px = header + padding atas-bawah box + margin header
+  */
+  aspect-ratio:16/9;
+  max-height:calc(100dvh - 88px - 40px);
+  border-radius:14px;
   background:#000;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  /* FIX: aspect-ratio sebagai fallback saja di desktop */
-  aspect-ratio:16/9;
-  opacity:0;transform:scale(.96);
-  transition:opacity .36s ease .18s,transform .36s cubic-bezier(.22,1,.36,1) .18s;
+  flex:1 1 auto;
+  min-height:0;
+  opacity:0;transform:scale(.97);
+  transition:opacity .36s ease .16s,transform .36s cubic-bezier(.22,1,.36,1) .16s;
 }
 .modal-ov.show .modal-vid-wrap{opacity:1;transform:none;}
-
-/* FIX: iframe & video di dalam wrap — isi penuh container */
 .modal-vid-wrap iframe,
 .modal-vid-wrap video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  border:none;
-  display:block;
-  object-fit:contain;
-  border-radius:12px;
+  position:absolute;inset:0;width:100%;height:100%;
+  border:none;display:block;
+  object-fit:contain;border-radius:14px;
 }
 
-/* Spinner inside vid */
+/* Spinner */
 .modal-spin{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:#000;border-radius:12px;z-index:2;
+  background:#000;border-radius:14px;z-index:2;
   transition:opacity .3s ease;
 }
 .modal-spin.hide{opacity:0;pointer-events:none;}
 .spin-ring{width:44px;height:44px;border-radius:50%;border:3px solid rgba(96,165,250,.2);border-top-color:#60a5fa;animation:spinR .75s linear infinite;}
 @keyframes spinR{to{transform:rotate(360deg);}}
 
-/* Photo container */
+/* ── PHOTO MODAL ── */
+.modal-box.photo-mode{
+  /* Override untuk mode foto: lebar mengikuti gambar */
+  width:auto;
+  max-width:min(96vw, 960px);
+  min-width:280px;
+  padding:14px;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:stretch;
+  max-height:calc(100dvh - 40px);
+}
 .modal-photo-wrap{
-  display:none;border-radius:12px;overflow:hidden;
+  display:none;
+  border-radius:12px;overflow:hidden;
   justify-content:center;align-items:center;
-  opacity:0;transform:scale(.96);
-  transition:opacity .36s ease .18s,transform .36s cubic-bezier(.22,1,.36,1) .18s;
   flex:1 1 auto;
   min-height:0;
+  opacity:0;transform:scale(.97);
+  transition:opacity .36s ease .16s,transform .36s cubic-bezier(.22,1,.36,1) .16s;
 }
 .modal-ov.show .modal-photo-wrap{opacity:1;transform:none;}
 .modal-photo-wrap img{
   display:block;
-  max-width:min(90vw,900px);
-  max-height:70vh;
+  /* 
+    max-height = layar penuh - header modal - padding - safe area 
+    Ini yang bikin foto tidak overflow dan close button tetap terlihat
+  */
+  max-height:calc(100dvh - 40px - 52px - 14px);
+  max-width:min(92vw, 920px);
   width:auto;height:auto;
   object-fit:contain;border-radius:8px;
 }
 
-/* ═══════════════════════════════════════════════
-   CUSTOM VIDEO PLAYER — FIXED MOBILE
-═══════════════════════════════════════════════ */
-.custom-video-player{
-  position:absolute;
-  inset:0;
-  background:#000;
-  border-radius:12px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.custom-video-player video{
-  width:100%;height:100%;
-  object-fit:contain;
-  display:block;
-}
-.cvp-controls{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(to top,rgba(0,0,0,.75),transparent);
-  padding:8px 10px 12px;
-  opacity:0;
-  transition:opacity .2s;
-  z-index:10;
-}
-.custom-video-player:hover .cvp-controls,
-.custom-video-player.cvp-show-controls .cvp-controls{opacity:1;}
-
-.cvp-progress{
-  width:100%;height:4px;
-  background:rgba(255,255,255,.3);
-  border-radius:2px;margin-bottom:8px;
-  cursor:pointer;position:relative;
-  /* FIX: touch target lebih besar */
-  padding:6px 0;margin-bottom:2px;
-  box-sizing:content-box;
-}
-.cvp-progress-inner{
-  position:absolute;left:0;top:50%;transform:translateY(-50%);
-  width:100%;height:4px;background:rgba(255,255,255,.3);border-radius:2px;
-  overflow:hidden;pointer-events:none;
-}
-.cvp-progress-bar{height:100%;background:#60a5fa;border-radius:2px;width:0%;transition:width .1s linear;}
-
-.cvp-controls-row{
-  display:flex;align-items:center;
-  /* FIX: gap lebih kecil di mobile */
-  gap:6px;
-}
-.cvp-left{display:flex;align-items:center;gap:6px;flex:1;min-width:0;}
-.cvp-btn{
-  background:none;border:none;color:#fff;cursor:pointer;
-  /* FIX: ukuran tombol lebih besar untuk touch */
-  font-size:.9rem;
-  padding:5px;
-  transition:transform .2s;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  min-width:30px;min-height:30px;
-}
-.cvp-btn:hover{transform:scale(1.15);}
-.cvp-time{
-  color:rgba(255,255,255,.9);
-  /* FIX: ukuran font lebih kecil agar muat di mobile */
-  font-size:.68rem;
-  white-space:nowrap;
-  font-family:monospace;
-  flex-shrink:0;
-}
-.cvp-right{display:flex;align-items:center;gap:4px;flex-shrink:0;}
-.cvp-volume-wrap{display:flex;align-items:center;gap:4px;}
-/* FIX: volume slider disembunyikan di mobile, ganti jadi mute toggle */
-.cvp-volume-slider-wrap{
-  display:flex;align-items:center;
-}
-.cvp-volume{
-  width:48px;height:4px;
-  background:rgba(255,255,255,.3);border-radius:2px;
-  cursor:pointer;position:relative;
-}
-.cvp-volume-bar{height:100%;background:#60a5fa;border-radius:2px;width:70%;position:absolute;left:0;pointer-events:none;}
-
-.cvp-center-play{
+/* ── VIDEO CONTROLS ── */
+.video-controls{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:56px;height:56px;border-radius:50%;
-  background:rgba(0,0,0,.45);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:1.4rem;
-  cursor:pointer;transition:all .2s;z-index:5;
   opacity:0;pointer-events:none;
+  transition:opacity .5s ease;
+  z-index:5;
 }
-.custom-video-player:not(.cvp-playing) .cvp-center-play{opacity:1;pointer-events:auto;}
-.cvp-center-play:hover{background:rgba(0,0,0,.6);transform:translate(-50%,-50%) scale(1.1);}
+.video-controls.visible{opacity:1;pointer-events:auto;}
+#play-pause-btn{
+  width:60px;height:60px;border-radius:50%;
+  background:rgba(0,0,0,.7);color:#fff;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;cursor:pointer;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  transition:transform .2s,background .2s;
+}
+#play-pause-btn:hover{transform:scale(1.1);background:rgba(37,99,235,.8);}
+
 
 /* ═══════════════════════════════════════════════
    CONTACT POPUP
@@ -622,7 +538,7 @@ footer span{color:var(--blue);font-weight:600;}
 .reveal.visible{opacity:1;transform:none;}
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE — TABLET (max 1024px)
+   RESPONSIVE — TABLET
 ═══════════════════════════════════════════════ */
 @media(max-width:1024px){
   nav{padding:0 28px;}
@@ -634,31 +550,27 @@ footer span{color:var(--blue);font-weight:600;}
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE — MOBILE (max 768px)
+   RESPONSIVE — MOBILE
 ═══════════════════════════════════════════════ */
 @media(max-width:768px){
   :root{--nav-h:58px;}
 
-  /* Navbar */
   nav{padding:0 20px;}
   .nav-links,.btn-cta{display:none;}
   .nav-ham{display:flex;}
 
-  /* Hero */
   .hero{flex-direction:column;padding-top:calc(var(--nav-h) + 16px);min-height:auto;padding-bottom:0;align-items:flex-start;}
   .hero-content{padding:24px 20px 16px;max-width:100%;margin-left:0;width:100%;}
   .hero-name{font-size:clamp(2rem,9vw,2.8rem);}
   .hero-desc{font-size:.85rem;}
-  .hero-art{position:relative;right:auto;top:auto;bottom:auto;width:100%;height:260px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;}
+  .hero-art{position:relative;right:auto;top:auto;bottom:auto;width:100%;height:300px;display:flex;justify-content:center;align-items:flex-end;overflow:hidden;}
   .hero-blob{width:300px;height:320px;right:50%;transform:translateX(50%);bottom:0;}
-  .hero-profile{width:200px;height:200px;margin-bottom:0;}
+  .hero-profile{width:min(260px,76vw);height:min(260px,76vw);margin-bottom:0;}
   .big-glow{width:300px;height:300px;top:-60px;right:-40px;}
   .hero-deco .fg{display:none;}
 
-  /* Wave */
   .wave{margin-top:0;}
 
-  /* About */
   .about-section{padding:36px 20px;}
   .about-grid{grid-template-columns:1fr;gap:20px;}
   .about-card{padding:24px 20px;}
@@ -669,7 +581,6 @@ footer span{color:var(--blue);font-weight:600;}
   .sw-grid{grid-template-columns:1fr;}
   .stats-row{grid-template-columns:repeat(2,1fr);}
 
-  /* Video/Photo pages */
   .content-page{padding-top:var(--nav-h);}
   .page-header{padding:20px 20px 0;}
   .page-header h2{font-size:1.3rem;}
@@ -677,144 +588,139 @@ footer span{color:var(--blue);font-weight:600;}
   .grid-vid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
   .grid-photo{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
 
-  /* Social/Footer */
   .social-sec{padding:28px 20px;}
   .social-title::before,.social-title::after{width:30px;}
   footer{padding:14px 20px;}
 
-  /* ═══════════════════════════
-     MODAL MOBILE — MAIN FIX
-  ═══════════════════════════ */
+  /* ── MODAL MOBILE — semua fix di sini ── */
   .modal-ov{
-    padding:0;
+    padding:8px;
     align-items:center;
     justify-content:center;
-    /* FIX: full screen approach untuk modal di mobile */
   }
 
+  /* VIDEO MODAL mobile */
   .modal-box{
-    border-radius:20px;
-    width:100%;
-    max-width:min(100%,calc(100vw - 32px));
-    padding:12px 12px 16px;
-    /* FIX: tinggi modal mobile — ambil 109vh */
-    max-height:109vh;
-    transform:scale(1) translateY(0);
+    border-radius:16px;
+    width:calc(100vw - 16px);
+    max-width:calc(100vw - 16px);
+    padding:10px 10px 10px;
+    /* 
+      max-height = seluruh viewport minus padding modal overlay (16px total)
+      ini penting agar box tidak keluar layar
+    */
+    max-height:calc(100dvh - 16px);
+    transform:scale(.9) translateY(20px);
+    display:flex;flex-direction:column;
     overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    box-sizing:border-box;
-    margin:0 auto;
+    gap:0;
   }
-  .modal-ov.show .modal-box{transform:translateY(0);}
-  .modal-box.photo-mode{
-    border-radius:20px;
-    width:100%;max-width:min(100%,calc(100vw - 32px));
-    align-items:center;
-    box-sizing:border-box;
-  }
+  .modal-ov.show .modal-box{transform:none;}
 
-  /* FIX: video wrap di mobile — height fixed supaya tidak collapse */
+  /* Header di mobile: sedikit lebih compact */
+  .modal-header{
+    margin-bottom:8px;
+    min-height:36px;
+  }
+  .modal-title-el{font-size:.82rem;}
+  .modal-close{width:30px;height:30px;font-size:.9rem;}
+
+  /* 
+    VIDEO WRAPPER MOBILE — FIX UTAMA:
+    Kita TIDAK pakai aspect-ratio murni karena akan membuat
+    tinggi video terlalu besar di layar kecil dan kontrol Drive terpotong.
+    
+    Strategi: 
+    - flex-shrink:0, flex-grow:1 → ambil sisa ruang yang tersedia
+    - min-height:0 → boleh menyusut
+    - max-height: sisa layar setelah header (≈54px) + padding box (20px) + margin header (8px)
+    
+    Ini membuat iframe mengisi ruang yang ADA, bukan memaksa aspect ratio
+    yang mungkin lebih tinggi dari layar.
+  */
   .modal-vid-wrap{
     width:100%;
-    max-width:100%;
-    /* FIX: hapus aspect-ratio di mobile, gunakan flex-grow */
-    flex:1 1 auto;
-    min-height:370px;
-    max-height:calc(109vh - 70px);
+    /* 
+      Tinggi dihitung: total layar - padding overlay (16px) 
+      - padding box atas-bawah (20px) - header (36px) - margin header (8px)
+      = 100dvh - 80px
+    */
+    height:calc(100dvh - 80px);
+    max-height:calc(100dvh - 80px);
+    /* aspect-ratio di-override agar tidak memaksa tinggi melebihi layar */
     aspect-ratio:unset;
-    border-radius:16px;
-    box-sizing:border-box;
-    overflow:hidden;
-    padding:10px;
-    background:rgba(15,23,42,.06);
-  }
-
-  .modal-hint{
-    font-size:.7rem;
-    color:#60a5fa;
-    text-align:center;
-    padding:8px 10px 0;
-    opacity:0;
-    transition:opacity .3s ease;
-    pointer-events:none;
-    display:none;
-  }
-  .modal-box.show-hint .modal-hint{
+    border-radius:10px;
+    flex:1 1 auto;
+    min-height:0;
+    /* Penting: jangan opacity/transform di mobile karena
+       akan ganggu z-index iframe */
     opacity:1;
+    transform:none;
+    transition:none;
   }
-
-  /* FIX: iframe & video tetap isi penuh */
   .modal-vid-wrap iframe,
   .modal-vid-wrap video{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    border:none;
-    border-radius:12px;
+    position:absolute;inset:0;width:100%;height:100%;
+    border:none;border-radius:10px;
     object-fit:contain;
   }
 
-  /* FIX: custom video player di mobile */
-  .modal-vid-wrap .custom-video-player{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    border-radius:12px;
+  /* PHOTO MODAL mobile */
+  .modal-box.photo-mode{
+    width:auto;
+    max-width:calc(100vw - 16px);
+    min-width:200px;
+    padding:10px;
+    max-height:calc(100dvh - 16px);
+    border-radius:16px;
+    /* Align stretch agar header bar full-width */
+    align-items:stretch;
   }
-  .modal-vid-wrap .custom-video-player video{
-    width:100%;height:100%;
-    object-fit:contain;
-    border-radius:12px;
-  }
-
-  /* FIX: kontrol video di mobile — lebih besar & proper layout */
-  .custom-video-player .cvp-controls{
-    opacity:1 !important; /* selalu tampil di mobile */
-    padding:6px 10px 10px;
-  }
-  .cvp-btn{
-    font-size:.85rem;
-    min-width:34px;min-height:34px;
-    padding:4px;
-  }
-  .cvp-time{font-size:.65rem;}
-  /* FIX: sembunyikan volume slider di mobile, cukup mute button */
-  .cvp-volume-slider-wrap{display:none;}
-  .cvp-center-play{
-    width:52px;height:52px;
-    font-size:1.3rem;
-  }
-
-  /* FIX: foto modal */
   .modal-photo-wrap img{
-    max-width:calc(100vw - 32px);
-    max-height:calc(90vh - 100px);
+    /* 
+      Tinggi maks foto: layar - padding overlay (16px) 
+      - padding box (20px) - header (36px) - margin header (8px)
+      = 100dvh - 80px
+    */
+    max-height:calc(100dvh - 80px);
+    max-width:calc(100vw - 36px);
+    border-radius:8px;
   }
 
-  .modal-hint{
-    display:block;
-  }
-
-  /* Contact popup */
-  .cp-box{padding:28px 20px;border-radius:24px;max-height:85vh;overflow-y:auto;}
-  #cp{align-items:center;justify-content:center;padding:16px;}
+  /* Contact popup — slide up dari bawah */
+  #cp{align-items:flex-end;padding:0;}
+  #cp.open{padding:0;}
+  #cp .cp-box{border-radius:20px 20px 0 0;max-width:100%;padding:28px 20px;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));}
 }
 
-/* Extra small phones */
+/* Landscape mobile */
+@media(max-width:768px) and (orientation:landscape){
+  .modal-vid-wrap{
+    height:calc(100dvh - 70px);
+    max-height:calc(100dvh - 70px);
+  }
+  .modal-title-el{
+    /* Sembunyikan judul di landscape biar lebih lega */
+    display:none;
+  }
+  .modal-header{margin-bottom:6px;min-height:28px;}
+  .modal-vid-wrap{
+    height:calc(100dvh - 54px);
+    max-height:calc(100dvh - 54px);
+  }
+}
+
 @media(max-width:380px){
   .hero-profile{width:160px;height:160px;}
   .grid-vid{grid-template-columns:1fr 1fr;}
   .grid-photo{grid-template-columns:1fr 1fr;}
-  .modal-vid-wrap{min-height:160px;}
 }
 </style>
 </head>
 <body>
 <div id="tov"></div>
 
+<!-- BG CANVAS -->
 <div class="bgc">
   <div class="bgc-dots"></div>
   <div class="bgb b1"></div><div class="bgb b2"></div><div class="bgb b3"></div>
@@ -858,6 +764,7 @@ footer span{color:var(--blue);font-weight:600;}
   <div class="fg fg-arc" style="width:50px;height:50px;bottom:42%;left:32%;--d:9s"></div>
 </div>
 
+<!-- NAVBAR -->
 <nav>
   <a class="logo" onclick="navHome();return false;" href="#"><span>Ahmad</span><span class="logo-blue">Zaky</span></a>
   <ul class="nav-links">
@@ -872,6 +779,7 @@ footer span{color:var(--blue);font-weight:600;}
   </button>
 </nav>
 
+<!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="nav-drawer">
   <ul>
     <li><a href="#" id="dr-home" onclick="navHome();closeDrawer();return false;">🏠 Home</a></li>
@@ -882,6 +790,7 @@ footer span{color:var(--blue);font-weight:600;}
   <button class="dr-cta" onclick="openCP();closeDrawer()"><i class="fa fa-paper-plane"></i> Contact Me</button>
 </div>
 
+<!-- ══════════ HOME ══════════ -->
 <div class="page" id="page-home">
   <section class="hero" id="hero">
     <div class="hero-deco">
@@ -965,7 +874,7 @@ footer span{color:var(--blue);font-weight:600;}
         <div class="exp-panels-wrap" id="exp-wrap">
           <div class="exp-panel active" id="exp-software">
             <div class="sw-grid">
-              <div class="sw-item"><div class="sw-icon sw-ae"><i class="fa fa-wand-magic-sparkles"></i></div><div><div class="sw-name">After Effects</div><div class="sw-level">Motion &amp; VFX</div></div></div>
+              <div class="sw-item"><div class="sw-icon sw-ae"><i class="fa fa-wand-magic-sparkles"></i></div><div><div class="sw-name">After Effects</div><div class="sw-level">Motion & VFX</div></div></div>
               <div class="sw-item"><div class="sw-icon sw-am"><i class="fa fa-bolt"></i></div><div><div class="sw-name">Alight Motion</div><div class="sw-level">Mobile Editing</div></div></div>
               <div class="sw-item"><div class="sw-icon sw-cc"><i class="fa fa-scissors"></i></div><div><div class="sw-name">CapCut</div><div class="sw-level">Quick Editing</div></div></div>
               <div class="sw-item"><div class="sw-icon sw-pr"><i class="fa fa-film"></i></div><div><div class="sw-name">Premiere Pro</div><div class="sw-level">Video Editing</div></div></div>
@@ -1010,6 +919,7 @@ footer span{color:var(--blue);font-weight:600;}
   <footer><p>© 2026 <span>Portofolio</span> – Ahmad Zaky. All rights reserved.</p></footer>
 </div>
 
+<!-- ══════════ VIDEO ══════════ -->
 <div class="page" id="page-video">
   <div class="content-page">
     <div class="pg-deco">
@@ -1051,6 +961,7 @@ footer span{color:var(--blue);font-weight:600;}
   <footer><p>© 2026 <span>Portofolio</span> – Ahmad Zaky. All rights reserved.</p></footer>
 </div>
 
+<!-- ══════════ PHOTO ══════════ -->
 <div class="page" id="page-photo">
   <div class="content-page">
     <div class="pg-deco">
@@ -1068,12 +979,12 @@ footer span{color:var(--blue);font-weight:600;}
       <h3><i class="fa fa-camera"></i> Galeri Foto</h3>
       <div class="grid-photo">
         <div class="media-card pc mc-2 reveal" onclick="openPhoto('Kampus','foto/bangunan.jpg')"><div class="card-icon"><i class="fa fa-building"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Kampus</div></div></div>
-        <div class="media-card pc mc-3 reveal" onclick="openPhoto('Dedaunan di Bukit','foto/bukit.jpg')"><div class="card-icon"><i class="fa fa-leaf"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Dedaunan di Bukit</div></div></div>
-        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 1','foto/pantai1.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai 1</div></div></div>
-        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 2','foto/pantai2.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai 2</div></div></div>
-        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 3','foto/pantai3.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai 3</div></div></div>
-        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 4','foto/pantai4.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai 4</div></div></div>
-        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 5','foto/pantai5.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Portrait</div><div class="card-ttl">Pantai 5</div></div></div>
+        <div class="media-card pc mc-3 reveal" onclick="openPhoto('Dedaunan di Bukit','foto/bukit.jpg')"><div class="card-icon"><i class="fa fa-leaf"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Landscape</div><div class="card-ttl">Dedaunan di Bukit</div></div></div>
+        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 1','foto/pantai1.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Landscape</div><div class="card-ttl">Pantai 1</div></div></div>
+        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 2','foto/pantai2.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Landscape</div><div class="card-ttl">Pantai 2</div></div></div>
+        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 3','foto/pantai3.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Landscape</div><div class="card-ttl">Pantai 3</div></div></div>
+        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 4','foto/pantai4.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Landscape</div><div class="card-ttl">Pantai 4</div></div></div>
+        <div class="media-card pc mc-5 reveal" onclick="openPhoto('Pantai 5','foto/pantai5.jpg')"><div class="card-icon"><i class="fa fa-water"></i></div><div class="card-ov"><div class="play-btn"><i class="fa fa-expand"></i></div></div><div class="card-info"><div class="card-cat">Landscape</div><div class="card-ttl">Pantai 5</div></div></div>
       </div>
     </div>
   </div>
@@ -1081,20 +992,33 @@ footer span{color:var(--blue);font-weight:600;}
   <footer><p>© 2026 <span>Portofolio</span> – Ahmad Zaky. All rights reserved.</p></footer>
 </div>
 
+<!-- ══════════ MODAL — STRUKTUR DIUBAH ══════════ -->
 <div class="modal-ov" id="modal">
   <div class="modal-box" id="modal-box">
-    <button class="modal-close" onclick="closeModal()" aria-label="Tutup">✕</button>
-    <h3 class="modal-title-el" id="modal-title"></h3>
+
+    <!-- HEADER: judul + tombol X berdampingan (tidak lagi absolute) -->
+    <div class="modal-header" id="modal-header">
+      <h3 class="modal-title-el" id="modal-title"></h3>
+      <button class="modal-close" onclick="closeModal()" aria-label="Tutup">✕</button>
+    </div>
+
+    <!-- Video wrapper -->
     <div class="modal-vid-wrap" id="modal-vw">
       <div class="modal-spin" id="modal-spin"><div class="spin-ring"></div></div>
+      <div class="video-controls" id="video-controls">
+        <button id="play-pause-btn" onclick="togglePlayPause()">▶️</button>
+      </div>
     </div>
+
+    <!-- Photo wrapper -->
     <div class="modal-photo-wrap" id="modal-pw" style="display:none">
       <img id="modal-pi" src="" alt="foto" loading="lazy">
     </div>
-    <div class="modal-hint" style="text-align: center;"><i class="fa fa-expand"></i> Fullscreen jika tampilan tidak optimal</div>
+
   </div>
 </div>
 
+<!-- ══════════ CONTACT POPUP ══════════ -->
 <div id="cp">
   <div class="cp-box">
     <button class="cp-close" onclick="closeCP()">✕</button>
@@ -1129,30 +1053,18 @@ function toggleDrawer(){
   drawerOpen=!drawerOpen;
   const dr=document.getElementById('nav-drawer');
   const ic=document.getElementById('ham-icon');
-  const btn=document.getElementById('nav-ham');
-  if(drawerOpen){
-    btn.classList.add('animating');
-    setTimeout(()=>{ic.className='fa fa-xmark';dr.classList.add('open');btn.classList.remove('animating');},150);
-  } else {
-    btn.classList.add('animating');
-    setTimeout(()=>{ic.className='fa fa-bars';dr.classList.remove('open');btn.classList.remove('animating');
-      document.querySelectorAll('#nav-drawer a, #nav-drawer .nav-btn, #nav-drawer .dr-cta').forEach(el=>{el.style.opacity='0';el.style.transform='translateX(-16px)';});
-    },150);
-  }
+  if(drawerOpen){dr.classList.add('open');ic.className='fa fa-xmark';}
+  else{dr.classList.remove('open');ic.className='fa fa-bars';}
 }
 function closeDrawer(){
   if(!drawerOpen)return;
   drawerOpen=false;
-  const btn=document.getElementById('nav-ham');
-  btn.classList.add('animating');
-  setTimeout(()=>{
-    document.getElementById('nav-drawer').classList.remove('open');
-    document.getElementById('ham-icon').className='fa fa-bars';
-    btn.classList.remove('animating');
-    document.querySelectorAll('#nav-drawer a, #nav-drawer .nav-btn, #nav-drawer .dr-cta').forEach(el=>{el.style.opacity='0';el.style.transform='translateX(-16px)';});
-  },150);
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('ham-icon').className='fa fa-bars';
 }
-document.addEventListener('click',e=>{if(drawerOpen&&!e.target.closest('#nav-drawer')&&!e.target.closest('#nav-ham'))closeDrawer();});
+document.addEventListener('click',e=>{
+  if(drawerOpen&&!e.target.closest('#nav-drawer')&&!e.target.closest('#nav-ham'))closeDrawer();
+});
 
 /* ══════════════════════════════════════════
    TRANSITION FX
@@ -1180,6 +1092,9 @@ function fireFX(style){
 
 function pickStyle(f,t){const fi=PO[f]??0,ti=PO[t]??0;if(fi===0&&ti>0)return'slide-up';if(fi>0&&ti===0)return'slide-down';if(fi<ti)return'swipe-left';if(fi>ti)return'swipe-right';return'fade';}
 
+/* ══════════════════════════════════════════
+   CORE NAVIGATE
+══════════════════════════════════════════ */
 function goTo(name,after){
   if(BUSY)return;
   if(name===CUR){window.scrollTo({top:0,behavior:'smooth'});if(after)after();return;}
@@ -1247,13 +1162,32 @@ function switchExp(panel,btn){
    LAZY THUMBNAIL LOADER
 ══════════════════════════════════════════ */
 let thumbObs=null;
+
+function getThumbUrl(src,isPhoto){
+  if(!src)return null;
+  if(isPhoto)return src;
+  if(src.startsWith('drive:')){
+    const id=src.replace('drive:','');
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w320`;
+  }
+  if(/^[a-zA-Z0-9_-]{11}$/.test(src)){
+    return `https://img.youtube.com/vi/${src}/mqdefault.jpg`;
+  }
+  return null;
+}
+
 function initLazyThumbs(){
   if(thumbObs)thumbObs.disconnect();
   thumbObs=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{if(!entry.isIntersecting)return;thumbObs.unobserve(entry.target);loadThumb(entry.target);});
-  },{rootMargin:'260px'});
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      thumbObs.unobserve(entry.target);
+      loadThumb(entry.target);
+    });
+  },{rootMargin:'240px'});
   document.querySelectorAll('.page.active .media-card:not(.thumb-ok)').forEach(c=>thumbObs.observe(c));
 }
+
 function loadThumb(card){
   if(card.classList.contains('thumb-ok'))return;
   const oc=card.getAttribute('onclick')||'';
@@ -1262,17 +1196,17 @@ function loadThumb(card){
   if(m){src=m[1];isPhoto=true;}
   else{m=oc.match(/openVid\('[^']*','([^']*)'\)/);if(m)src=m[1];}
   if(!src)return;
-  let thumbUrl=null;
-  if(isPhoto){thumbUrl=src;}
-  else if(src.startsWith('drive:')){const id=src.replace('drive:','');thumbUrl=`https://drive.google.com/thumbnail?id=${id}&sz=w400`;}
-  else if(/^[a-zA-Z0-9_-]{11}$/.test(src)){thumbUrl=`https://img.youtube.com/vi/${src}/mqdefault.jpg`;}
+  const thumbUrl=getThumbUrl(src,isPhoto);
   if(!thumbUrl)return;
   const img=document.createElement('img');
-  img.className='card-thumb';img.alt='';img.decoding='async';
+  img.className='card-thumb';
+  img.alt='';img.decoding='async';
+  if(isPhoto)img.width=400;
   img.onload=()=>{img.classList.add('loaded');card.classList.add('thumb-ok');card.insertBefore(img,card.firstChild);};
   img.onerror=()=>{card.classList.add('thumb-ok');img.remove();};
   img.src=thumbUrl;
 }
+
 
 /* ══════════════════════════════════════════
    MODAL
@@ -1280,8 +1214,6 @@ function loadThumb(card){
 function _showModal(){
   const m=document.getElementById('modal');
   m.classList.add('active');
-  /* Lock body scroll saat modal terbuka */
-  document.body.style.overflow='hidden';
   requestAnimationFrame(()=>requestAnimationFrame(()=>m.classList.add('show')));
 }
 
@@ -1292,59 +1224,62 @@ function openVid(title,src){
   const spin=document.getElementById('modal-spin');
   const titleEl=document.getElementById('modal-title');
 
-  /* reset */
-  vw.querySelectorAll('iframe,video,.custom-video-player').forEach(e=>e.remove());
+  vw.querySelectorAll('iframe,video').forEach(e=>e.remove());
   spin.classList.remove('hide');
   pw.style.display='none';
   vw.style.display='';
   box.classList.remove('photo-mode');
   titleEl.textContent=title;
-  
-  /* Tampilkan hint di mobile */
-  const isMobile=window.innerWidth<=768;
-  if(isMobile){
-    box.classList.add('show-hint');
-  } else {
-    box.classList.remove('show-hint');
-  }
-  
+
   _showModal();
+
+  // Add event listeners for video controls
+  vw.addEventListener('mousemove',resetVideoControlsTimeout);
+  vw.addEventListener('click',resetVideoControlsTimeout);
+  vw.addEventListener('touchstart',resetVideoControlsTimeout);
+
+  // Hide video controls initially
+  document.getElementById('video-controls').style.display='none';
 
   setTimeout(()=>{
     let el;
     if(!src){
       spin.classList.add('hide');
       const ph=mk('div','',`display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:100%;color:#9ca3af;text-align:center;padding:20px`);
-      ph.innerHTML=`<i class="fa fa-play-circle" style="font-size:2.5rem;color:var(--blue-l)"></i><p style="font-size:.85rem">${title}</p><small style="font-size:.74rem">ID belum diisi di HTML</small>`;
+      ph.innerHTML=`<i class="fa fa-play-circle" style="font-size:2.5rem;color:var(--blue-l)"></i><p style="font-size:.85rem">${title}</p><small>ID belum diisi di HTML</small>`;
       vw.appendChild(ph);
       return;
     }
     if(src.startsWith('drive:')){
       const id=src.replace('drive:','');
-      /* FIX: gunakan allowfullscreen (lowercase) sebagai attribute HTML */
       el=document.createElement('iframe');
       el.src=`https://drive.google.com/file/d/${id}/preview`;
-      el.allow='autoplay;fullscreen;encrypted-media;picture-in-picture';
-      /* FIX: set attribute lowercase agar tidak ada warning */
-      el.setAttribute('allowfullscreen','');
-      el.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:12px;';
-      el.addEventListener('load',()=>spin.classList.add('hide'),{once:true});
-      /* FIX: timeout fallback jika load event tidak fire */
-      setTimeout(()=>spin.classList.add('hide'),4000);
+      el.allow='autoplay;fullscreen';
+      el.allowFullscreen=true;
+      el.onload=()=>{
+        spin.classList.add('hide');
+      };
     } else if(/^[a-zA-Z0-9_-]{11}$/.test(src)){
       el=document.createElement('iframe');
       el.src=`https://www.youtube.com/embed/${src}?autoplay=1&vq=hd1080&rel=0&modestbranding=1&fs=1`;
       el.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share';
-      el.setAttribute('allowfullscreen','');
-      el.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:12px;';
-      el.addEventListener('load',()=>spin.classList.add('hide'),{once:true});
-      setTimeout(()=>spin.classList.add('hide'),4000);
+      el.allowFullscreen=true;
+      el.onload=()=>{spin.classList.add('hide');};
     } else if(/\.(mp4|mov|webm|mkv)$/i.test(src)){
       el=document.createElement('video');
-      el.controls=true;el.autoplay=false;el.playsInline=true;el.preload='metadata';
-      el.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;border-radius:12px;';
-      el.addEventListener('loadedmetadata',()=>spin.classList.add('hide'),{once:true});
-      el.addEventListener('error',()=>spin.classList.add('hide'),{once:true});
+      el.controls=false;el.autoplay=true;el.playsInline=true;el.preload='auto';
+      el.style.cssText='width:100%;height:100%;object-fit:contain;background:#000;border-radius:10px;';
+      el.addEventListener('loadedmetadata',()=>{
+        spin.classList.add('hide');
+        currentVideo=el;
+        el.play().catch(()=>{});
+        document.getElementById('play-pause-btn').textContent='⏸️';
+        document.getElementById('video-controls').style.display='block';
+        showVideoControls();
+      },{once:true});
+      el.addEventListener('play',()=>{document.getElementById('play-pause-btn').textContent='⏸️';});
+      el.addEventListener('pause',()=>{document.getElementById('play-pause-btn').textContent='▶️';});
+      el.addEventListener('error',()=>{spin.classList.add('hide');},{once:true});
       el.src=src;
     } else {
       spin.classList.add('hide');
@@ -1353,26 +1288,29 @@ function openVid(title,src){
   },120);
 }
 
-function formatTime(s){
-  if(!s||!isFinite(s))return'0:00';
-  const m=Math.floor(s/60),sec=Math.floor(s%60);
-  return m+':'+(sec<10?'0':'')+sec;
-}
-
 function openPhoto(title,src){
   const box=document.getElementById('modal-box');
   const vw=document.getElementById('modal-vw');
   const pw=document.getElementById('modal-pw');
   const img=document.getElementById('modal-pi');
   const titleEl=document.getElementById('modal-title');
+
   vw.style.display='none';
   pw.style.display='flex';
   box.classList.add('photo-mode');
   titleEl.textContent=title;
   img.src='';
+  img.style.opacity='0';
+
   _showModal();
+
   setTimeout(()=>{
-    if(!src){pw.innerHTML=`<p style="color:#9ca3af;padding:20px;font-size:.82rem">Path foto belum diisi</p>`;return;}
+    if(!src){
+      pw.innerHTML=`<p style="color:#9ca3af;padding:20px;font-size:.82rem">Path foto belum diisi</p>`;
+      return;
+    }
+    img.onload=()=>{img.style.transition='opacity .3s ease';img.style.opacity='1';};
+    img.onerror=()=>{img.style.opacity='1';};
     img.src=src;
   },100);
 }
@@ -1380,39 +1318,70 @@ function openPhoto(title,src){
 function closeModal(){
   const m=document.getElementById('modal');
   m.classList.remove('show');
-  /* Restore body scroll */
-  document.body.style.overflow='';
   setTimeout(()=>{
     m.classList.remove('active');
     const vw=document.getElementById('modal-vw');
-    /* FIX: stop iframe/video dengan benar */
-    vw.querySelectorAll('iframe').forEach(el=>{
-      el.src='about:blank';
-      el.remove();
+    vw.querySelectorAll('iframe,video').forEach(e=>{
+      if(e.tagName==='VIDEO'){e.pause();e.removeAttribute('src');e.load();}
+      e.remove();
     });
-    vw.querySelectorAll('video').forEach(el=>{
-      el.pause();el.removeAttribute('src');el.load();el.remove();
-    });
-    vw.querySelectorAll('.custom-video-player').forEach(el=>{
-      const vid=el.querySelector('video');
-      if(vid){vid.pause();vid.src='';}
-      el.remove();
-    });
+    vw.removeEventListener('mousemove',resetVideoControlsTimeout);
+    vw.removeEventListener('click',resetVideoControlsTimeout);
+    vw.removeEventListener('touchstart',resetVideoControlsTimeout);
+    hideVideoControls();
+    currentVideo=null;
     document.getElementById('modal-spin').classList.remove('hide');
     vw.style.display='';
+    vw.style.aspectRatio='';
     document.getElementById('modal-pw').style.display='none';
     document.getElementById('modal-pi').src='';
     document.getElementById('modal-box').classList.remove('photo-mode');
   },420);
 }
 
-/* FIX: tutup modal saat tap di luar */
 document.getElementById('modal').addEventListener('click',function(e){
   if(e.target===this)closeModal();
 });
 
-/* FIX: tutup modal dengan tombol Back / gesture swipe down di mobile */
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+/* ══════════════════════════════════════════
+   VIDEO CONTROLS LOGIC
+══════════════════════════════════════════ */
+let videoControlsTimeout=null;
+let currentVideo=null;
+
+function showVideoControls(){
+  const controls=document.getElementById('video-controls');
+  if(controls){
+    controls.classList.add('visible');
+    clearTimeout(videoControlsTimeout);
+    videoControlsTimeout=setTimeout(hideVideoControls,3000);
+  }
+}
+
+function hideVideoControls(){
+  const controls=document.getElementById('video-controls');
+  if(controls){
+    controls.classList.remove('visible');
+    clearTimeout(videoControlsTimeout);
+  }
+}
+
+function togglePlayPause(){
+  if(!currentVideo)return;
+  if(currentVideo.paused){
+    currentVideo.play();
+    document.getElementById('play-pause-btn').textContent='⏸️';
+  }else{
+    currentVideo.pause();
+    document.getElementById('play-pause-btn').textContent='▶️';
+  }
+  showVideoControls();
+}
+
+function resetVideoControlsTimeout(){
+  if(videoControlsTimeout)clearTimeout(videoControlsTimeout);
+  showVideoControls();
+}
 
 /* ══════════════════════════════════════════
    CONTACT POPUP
