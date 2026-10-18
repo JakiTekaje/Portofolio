@@ -1309,13 +1309,20 @@ function normalizeImgurUrl(url){
   return url;
 }
 
+function getImgurThumbUrl(url){
+  const normalizedUrl=normalizeImgurUrl(url);
+  if(!normalizedUrl)return null;
+  const match=normalizedUrl.match(/^https?:\/\/i\.imgur\.com\/([A-Za-z0-9]+)(?:\.[a-z]+)?(?:\?.*)?$/i);
+  return match?`https://i.imgur.com/${match[1]}m.jpg`:normalizedUrl;
+}
+
 function loadCardThumb(card){
   if(card.dataset.thumbLoaded)return;
   card.dataset.thumbLoaded='1';
   const type=card.dataset.type;
   let thumbUrl=null;
   if(type==='video') thumbUrl=getStreamableThumb(card.dataset.id);
-  else if(type==='photo') thumbUrl=normalizeImgurUrl(card.dataset.url);
+  else if(type==='photo') thumbUrl=getImgurThumbUrl(card.dataset.url);
   if(!thumbUrl)return finishSkeleton(card);
   if(thumbCache.has(thumbUrl)){applyThumb(card,thumbUrl);return;}
   const img=new Image();
@@ -1329,11 +1336,13 @@ function loadCardThumb(card){
 function applyThumb(card,url){
   const imgEl=document.createElement('img');
   imgEl.className='card-thumb';
-  imgEl.src=url;imgEl.alt='';imgEl.decoding='async';imgEl.loading='lazy';
+  imgEl.alt='';imgEl.decoding='async';imgEl.loading='lazy';
   const icon=card.querySelector('.card-icon');
   imgEl.onload=()=>{imgEl.classList.add('loaded');finishSkeleton(card);if(icon)icon.style.opacity='0';};
+  imgEl.onerror=()=>finishSkeleton(card);
   const gradient=card.querySelector('.card-gradient');
   card.insertBefore(imgEl,gradient);
+  imgEl.src=url;
 }
 
 function finishSkeleton(card){
